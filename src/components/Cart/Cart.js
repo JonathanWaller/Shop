@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getCart } from "../../ducks/cartReducer";
+import { getCart, removeFromCart } from "../../ducks/cartReducer";
 import "./Cart.css";
 
 class Cart extends Component {
@@ -21,6 +21,11 @@ class Cart extends Component {
           <div>{item.product_name}</div>
           <div>${item.product_price}</div>
           <img src={item.product_img} className="cart_itemImg" />
+          <div>
+            <button onClick={() => this.props.removeFromCart(item.cart_id)}>
+              Remove
+            </button>
+          </div>
         </div>
       );
     });
@@ -37,5 +42,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getCart }
+  { getCart, removeFromCart }
 )(Cart);

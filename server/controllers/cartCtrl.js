@@ -14,7 +14,17 @@ const addToCart = (req, res) => {
   });
 };
 
+const removeFromCart = (req, res) => {
+  console.log(req.params);
+  const { id } = req.params;
+  let db = req.app.get("db");
+  db.cart.removeFromCart(id).then(response => {
+    res.status(200).json(response);
+  });
+};
+
 module.exports = {
   getCart,
-  addToCart
+  addToCart,
+  removeFromCart
 };

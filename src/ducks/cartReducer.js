@@ -3,6 +3,7 @@ import axios from "axios";
 // constants
 const GET_CART = "GET_CART";
 const ADD_TO_CART = "ADD_TO_CART";
+const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 // ACTION CREATORS
 export function getCart() {
   return {
@@ -11,20 +12,22 @@ export function getCart() {
   };
 }
 
-export function addToCart(
-  product_id,
-  product_name,
-  product_price,
-  product_img
-) {
+export function addToCart(id, name, price, img) {
   return {
     type: ADD_TO_CART,
     payload: axios.post("/api/items", {
-      product_id,
-      product_name,
-      product_price,
-      product_img
+      id,
+      name,
+      price,
+      img
     })
+  };
+}
+
+export function removeFromCart(id) {
+  return {
+    type: REMOVE_FROM_CART,
+    payload: axios.delete(`/api/item/${id}`)
   };
 }
 
@@ -51,6 +54,11 @@ export default function cartReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false
+      };
+    case `${REMOVE_FROM_CART}_FULFILLED`:
+      return {
+        ...state,
+        cart: action.payload.data
       };
     default:
       return state;

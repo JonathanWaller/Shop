@@ -6,7 +6,11 @@ const express = require("express"),
 
 //   controllers
 const { getStore } = require("./controllers/storeCtrl");
-const { getCart, addToCart } = require("./controllers/cartCtrl");
+const {
+  getCart,
+  addToCart,
+  removeFromCart
+} = require("./controllers/cartCtrl");
 
 const app = express();
 
@@ -27,5 +31,6 @@ app.get("/api/store", getStore);
 // Cart
 app.get("/api/cart", getCart);
 app.post("/api/items", addToCart);
+app.delete("/api/item/:id", removeFromCart);
 
 app.listen(PORT, () => console.log(`Time to shop from ${PORT}`));

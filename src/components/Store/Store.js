@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { getStore } from "../../ducks/storeReducer";
+import { addToCart } from "../../ducks/cartReducer";
 import "./Store.css";
 
 class Store extends Component {
@@ -28,17 +29,20 @@ class Store extends Component {
           <img src={item.product_img} className="store_productImg" />
           <div>
             <button
+              //   onClick={() =>
+              //     this.addHandler(
+              //       item.product_id,
+              //       item.product_name,
+              //       item.product_price,
+              //       item.product_img
+              //     )
+              //   }
               onClick={() =>
-                this.addHandler(
+                this.props.addToCart(
                   item.product_id,
                   item.product_name,
                   item.product_price,
                   item.product_img
-                  //   25,
-                  //   "hoorah",
-                  //   75,
-                  //   "fdfd",
-                  //   "myimg"
                 )
               }
             >
@@ -64,5 +68,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getStore }
+  { getStore, addToCart }
 )(Store);
