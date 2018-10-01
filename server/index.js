@@ -6,6 +6,7 @@ const express = require("express"),
 
 //   controllers
 const { getStore } = require("./controllers/storeCtrl");
+const { getCart, addToCart } = require("./controllers/cartCtrl");
 
 const app = express();
 
@@ -20,6 +21,11 @@ massive(process.env.CONNECTION_STRING).then(dbInstance => {
 //   res.status(200).json(`Let's get it.`);
 // });
 
+// Store
 app.get("/api/store", getStore);
+
+// Cart
+app.get("/api/cart", getCart);
+app.post("/api/items", addToCart);
 
 app.listen(PORT, () => console.log(`Time to shop from ${PORT}`));

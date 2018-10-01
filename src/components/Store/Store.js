@@ -14,20 +14,43 @@ class Store extends Component {
     this.props.getStore();
   }
 
+  addHandler = (id, name, price, img) => {
+    axios.post("/api/items", { id, name, price, img });
+  };
+
   render() {
     console.log(this.props);
-    let storeItems = this.props.items.map(item => {
+    let storeItems = this.props.storeReducer.items.map(item => {
       return (
         <div key={item.product_id}>
           <h3>{item.product_name}</h3>
           <div>${item.product_price}</div>
           <img src={item.product_img} className="store_productImg" />
+          <div>
+            <button
+              onClick={() =>
+                this.addHandler(
+                  item.product_id,
+                  item.product_name,
+                  item.product_price,
+                  item.product_img
+                  //   25,
+                  //   "hoorah",
+                  //   75,
+                  //   "fdfd",
+                  //   "myimg"
+                )
+              }
+            >
+              Add To Cart
+            </button>
+          </div>
         </div>
       );
     });
     return (
       <div>
-        {this.props.isLoading ? (
+        {this.props.storeReducer.isLoading ? (
           <img src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif" />
         ) : null}
         <p>Heyyy from the STORE</p>
