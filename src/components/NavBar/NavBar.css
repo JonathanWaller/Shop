@@ -1,0 +1,7 @@
+.nav_linksWrapper {
+  display: flex;
+}
+
+#nav_link {
+  margin: 0 10px;
+}

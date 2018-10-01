@@ -31,7 +31,9 @@ class Cart extends Component {
     });
     return (
       <div>
-        <p>hey from Cart</p>
+        {this.props.cartReducer.isLoading ? (
+          <img src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif" />
+        ) : null}
         {myCart}
       </div>
     );
