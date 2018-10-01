@@ -1,4 +1,20 @@
+.store_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.store_productWrapper {
+  border: 1px solid #ad8c4c;
+  height: 30vh;
+  width: 20vw;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .store_productImg {
-  height: 50px;
-  width: 50px;
+  height: 10vh;
+  width: 10vw;
 }

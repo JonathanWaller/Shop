@@ -1,7 +1,14 @@
+.nav_wrapper {
+  border: 1px solid red;
+  background: #141414;
+  height: 5vh;
+}
+
 .nav_linksWrapper {
   display: flex;
 }
 
 #nav_link {
   margin: 0 10px;
+  color: white;
 }

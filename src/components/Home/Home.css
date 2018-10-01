@@ -1,0 +1,16 @@
+.home_wrapper {
+  height: 95vh;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#home_whiteText {
+  color: white;
+}
+
+#home_goldText {
+  color: #ad8c4c;
+}

@@ -12,14 +12,15 @@ export function getCart() {
   };
 }
 
-export function addToCart(id, name, price, img) {
+export function addToCart(id, name, price, img, qty) {
   return {
     type: ADD_TO_CART,
     payload: axios.post("/api/items", {
       id,
       name,
       price,
-      img
+      img,
+      qty
     })
   };
 }
@@ -34,6 +35,7 @@ export function removeFromCart(id) {
 // initial state
 const initialState = {
   cart: []
+  //   quantity: 1
 };
 
 // reducer

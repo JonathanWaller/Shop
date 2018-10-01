@@ -4,9 +4,11 @@ import "./NavBar.css";
 
 function NavBar() {
   return (
-    <div>
+    <div className="nav_wrapper">
       <div className="nav_linksWrapper">
-        <div id="nav_link">Home</div>
+        <Link to="/">
+          <div id="nav_link">Home</div>
+        </Link>
         <Link to="/store">
           <div id="nav_link">Shop</div>
         </Link>
