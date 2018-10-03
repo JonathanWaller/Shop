@@ -26,7 +26,7 @@ class Store extends Component {
         <div key={item.product_id} className="store_productWrapper">
           <h3>{item.product_name}</h3>
           <div>${item.product_price}</div>
-          <img src={item.product_img} className="store_productImg" />
+          <img src={item.product_img} className="store_productImg" alt="" />
           <div>
             <button
               //   onClick={() =>
@@ -56,7 +56,10 @@ class Store extends Component {
     return (
       <div className="store_wrapper">
         {this.props.storeReducer.isLoading ? (
-          <img src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif" />
+          <img
+            src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif"
+            alt=""
+          />
         ) : null}
 
         {storeItems}

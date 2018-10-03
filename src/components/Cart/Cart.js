@@ -20,7 +20,7 @@ class Cart extends Component {
         <div key={item.cart_id}>
           <div>{item.product_name}</div>
           <div>${item.product_price}</div>
-          <img src={item.product_img} className="cart_itemImg" />
+          <img src={item.product_img} className="cart_itemImg" alt="" />
           <div>
             <div>Qty: {item.quantity}</div>
             <button>Update Qty</button>
@@ -36,7 +36,10 @@ class Cart extends Component {
     return (
       <div>
         {this.props.cartReducer.isLoading ? (
-          <img src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif" />
+          <img
+            src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif"
+            alt=""
+          />
         ) : null}
         {myCart}
       </div>

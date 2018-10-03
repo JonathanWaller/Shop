@@ -23,8 +23,14 @@ const removeFromCart = (req, res) => {
   });
 };
 
+const addSessionCart = (req, res) => {
+  console.log("TERM REQ.SESSION.CART: ", req.session.cart);
+  res.status(200).json(req.session.cart);
+};
+
 module.exports = {
   getCart,
   addToCart,
-  removeFromCart
+  removeFromCart,
+  addSessionCart
 };
