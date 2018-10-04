@@ -7,13 +7,16 @@ import axios from "axios";
 class Cart extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      cart: []
+    };
   }
 
   componentDidMount() {
     // this.props.getCart();
     axios.get("/api/session").then(response => {
       console.log(response);
+      this.setState({ cart: response.data });
     });
   }
 
@@ -22,25 +25,38 @@ class Cart extends Component {
   };
 
   render() {
+    console.log("STATE: ", this.state.cart.cart);
     console.log(this.props);
-    let myCart = this.props.cartReducer.cart.map(item => {
-      return (
-        <div key={item.cart_id}>
-          <div>{item.product_name}</div>
-          <div>${item.product_price}</div>
-          <img src={item.product_img} className="cart_itemImg" alt="" />
-          <div>
-            <div>Qty: {item.quantity}</div>
-            <button>Update Qty</button>
+
+    let myCart =
+      this.state.cart.cart &&
+      this.state.cart.cart.map(elem => {
+        return (
+          <div key={elem.id}>
+            <div>{elem.name}</div>
+            <div>${elem.price}</div>
+            <img src={elem.img} style={{ height: 45, width: 45 }} />
           </div>
-          <div>
-            <button onClick={() => this.props.removeFromCart(item.cart_id)}>
-              Remove
-            </button>
-          </div>
-        </div>
-      );
-    });
+        );
+      });
+    // let myCart = this.props.cartReducer.cart.map(item => {
+    //   return (
+    //     <div key={item.cart_id}>
+    //       <div>{item.product_name}</div>
+    //       <div>${item.product_price}</div>
+    //       <img src={item.product_img} className="cart_itemImg" alt="" />
+    //       <div>
+    //         <div>Qty: {item.quantity}</div>
+    //         <button>Update Qty</button>
+    //       </div>
+    //       <div>
+    //         <button onClick={() => this.props.removeFromCart(item.cart_id)}>
+    //           Remove
+    //         </button>
+    //       </div>
+    //     </div>
+    //   );
+    // });
     return (
       <div>
         {this.props.cartReducer.isLoading ? (
