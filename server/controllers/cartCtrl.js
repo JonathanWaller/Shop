@@ -9,10 +9,10 @@ const addToCart = (req, res, next) => {
   console.log(req.body);
   let { cart, total } = req.session.cart;
   const { id, name, price, img, qty } = req.body;
-  cart.push(id, name, price, img, qty);
-  total += price;
+  cart.push({ id, name, price, img, qty });
+  req.session.cart.total += req.body.price;
   res.status(200).send(req.session.cart);
-  console.log(req.session.cart);
+  // console.log(req.session.cart);
 };
 
 // const addToCart = (req, res) => {
