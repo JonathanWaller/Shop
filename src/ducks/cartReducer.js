@@ -34,7 +34,8 @@ export function removeFromCart(id) {
 
 // initial state
 const initialState = {
-  cart: []
+  cart: [],
+  total: 0
   //   quantity: 1
 };
 

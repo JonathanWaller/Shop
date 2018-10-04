@@ -15,7 +15,7 @@ const {
 } = require("./controllers/cartCtrl");
 
 // middlewares
-const { checkForSession, logger } = require("./middlewares/checkForSession");
+// const { checkForSession, logger } = require("./middlewares/checkForSession");
 
 const app = express();
 
@@ -37,7 +37,7 @@ app.use(
   })
 );
 // app.use(logger);
-app.use(checkForSession);
+// app.use(checkForSession);
 
 massive(process.env.CONNECTION_STRING).then(dbInstance => {
   app.set("db", dbInstance);
@@ -52,15 +52,15 @@ massive(process.env.CONNECTION_STRING).then(dbInstance => {
 app.get("/api/store", getStore);
 
 // sessionCart
-app.post(
-  "/api/post",
-  checkForSession,
-  addSessionCart
-  // , (req, res, next) => {
-  //   res.send(200).json(req.session);
-  // console.log("howdy");
-  // }
-);
+// app.post(
+//   "/api/post",
+//   checkForSession,
+//   addSessionCart
+// , (req, res, next) => {
+//   res.send(200).json(req.session);
+// console.log("howdy");
+// }
+// );
 
 // app.post("/api/post", addSessionCart);
 
@@ -74,8 +74,8 @@ app.get("/api/session", (req, res, next) => {
 });
 
 // Cart
-// app.get("/api/cart", getCart);
+app.get("/api/cart", getCart);
 app.post("/api/items", addToCart);
-// app.delete("/api/item/:id", removeFromCart);
+app.delete("/api/item/:id", removeFromCart);
 
 app.listen(PORT, () => console.log(`Time to shop from ${PORT}`));

@@ -39,24 +39,24 @@ class Store extends Component {
           <img src={item.product_img} className="store_productImg" alt="" />
           <div>
             <button
-              onClick={() =>
-                this.addHandler({
-                  id: item.product_id,
-                  name: item.product_name,
-                  price: item.product_price,
-                  img: item.product_img,
-                  qty: 1
-                })
-              }
               // onClick={() =>
-              //   this.props.addToCart(
-              //     item.product_id,
-              //     item.product_name
-              //     item.product_price,
-              //     item.product_img,
-              //     1
-              //   )
+              //   this.addHandler({
+              //     id: item.product_id,
+              //     name: item.product_name,
+              //     price: item.product_price,
+              //     img: item.product_img,
+              //     qty: 1
+              //   })
               // }
+              onClick={() =>
+                this.props.addToCart(
+                  item.product_id,
+                  item.product_name,
+                  item.product_price,
+                  item.product_img,
+                  1
+                )
+              }
             >
               Add To Cart
             </button>
