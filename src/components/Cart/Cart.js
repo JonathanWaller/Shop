@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getCart, removeFromCart } from "../../ducks/cartReducer";
 import "./Cart.css";
+import axios from "axios";
 
 class Cart extends Component {
   constructor() {
@@ -10,8 +11,15 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    this.props.getCart();
+    // this.props.getCart();
+    axios.get("/api/session").then(response => {
+      console.log(response);
+    });
   }
+
+  handleCheckout = () => {
+    axios.post("/api/logout");
+  };
 
   render() {
     console.log(this.props);
@@ -42,6 +50,7 @@ class Cart extends Component {
           />
         ) : null}
         {myCart}
+        <button onClick={this.handleCheckout}>Checkout</button>
       </div>
     );
   }

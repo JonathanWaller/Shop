@@ -66,14 +66,15 @@ app.post(
 
 app.post("/api/logout", (req, res) => {
   req.session.destroy();
+  res.status(200).json(req.session.cart);
 });
 app.get("/api/session", (req, res, next) => {
-  res.send(200).json(req.session.cart);
+  res.status(200).json(req.session.cart);
 });
 
 // Cart
-app.get("/api/cart", getCart);
+// app.get("/api/cart", getCart);
 app.post("/api/items", addToCart);
-app.delete("/api/item/:id", removeFromCart);
+// app.delete("/api/item/:id", removeFromCart);
 
 app.listen(PORT, () => console.log(`Time to shop from ${PORT}`));

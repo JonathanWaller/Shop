@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getStore } from "../../ducks/storeReducer";
 import { addToCart } from "../../ducks/cartReducer";
 import "./Store.css";
+// import axios from "axios";
 
 class Store extends Component {
   constructor() {
@@ -13,6 +14,9 @@ class Store extends Component {
 
   componentDidMount() {
     this.props.getStore();
+    axios.get("/api/session").then(response => {
+      console.log(response);
+    });
   }
 
   addHandler = (id, name, price, img, qty) => {
