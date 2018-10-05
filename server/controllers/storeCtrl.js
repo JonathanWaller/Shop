@@ -5,6 +5,15 @@ const getStore = (req, res) => {
   });
 };
 
+const getProduct = (req, res) => {
+  let { id } = req.params;
+  let db = req.app.get("db");
+  db.store.getProduct(id).then(response => {
+    res.status(200).json(response);
+  });
+};
+
 module.exports = {
-  getStore
+  getStore,
+  getProduct
 };

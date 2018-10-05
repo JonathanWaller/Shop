@@ -12,9 +12,9 @@ class Home extends Component {
     // axios.get("/api/store").then(response => {
     //   console.log(response);
     // });
-    axios.post("/api/post").then(response => {
-      console.log(response);
-    });
+    // axios.post("/api/post").then(response => {
+    //   console.log(response);
+    // });
     this.props.history.push("/store");
   };
 

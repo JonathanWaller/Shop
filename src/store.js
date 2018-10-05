@@ -4,10 +4,12 @@ import promiseMiddleware from "redux-promise-middleware";
 import storeReducer from "./ducks/storeReducer";
 import cartReducer from "./ducks/cartReducer";
 // import sessionCartReducer from "./ducks/sessionCartReducer";
+import productReducer from "./ducks/productReducer";
 
 const combinedReducers = combineReducers({
   storeReducer,
-  cartReducer
+  cartReducer,
+  productReducer
   // sessionCartReducer
 });
 

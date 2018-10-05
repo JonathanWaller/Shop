@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { getStore } from "../../ducks/storeReducer";
 import { addToCart } from "../../ducks/cartReducer";
+import { Link } from "react-router-dom";
 import "./Store.css";
 // import axios from "axios";
 
@@ -29,39 +30,43 @@ class Store extends Component {
     });
   };
 
+  goToProduct = () => {};
+
   render() {
     console.log(this.props);
     let storeItems = this.props.storeReducer.items.map(item => {
       return (
-        <div key={item.product_id} className="store_productWrapper">
-          <h3>{item.product_name}</h3>
-          <div>${item.product_price}</div>
-          <img src={item.product_img} className="store_productImg" alt="" />
-          <div>
-            <button
-              // onClick={() =>
-              //   this.addHandler({
-              //     id: item.product_id,
-              //     name: item.product_name,
-              //     price: item.product_price,
-              //     img: item.product_img,
-              //     qty: 1
-              //   })
-              // }
-              onClick={() =>
-                this.props.addToCart(
-                  item.product_id,
-                  item.product_name,
-                  item.product_price,
-                  item.product_img,
-                  1
-                )
-              }
-            >
-              Add To Cart
-            </button>
+        <Link to={`/product/${item.product_id}`} key={item.product_id}>
+          <div className="store_productWrapper" onClick={this.goToProduct}>
+            <h3>{item.product_name}</h3>
+            <div>${item.product_price}</div>
+            <img src={item.product_img} className="store_productImg" alt="" />
+            <div>
+              <button
+                // onClick={() =>
+                //   this.addHandler({
+                //     id: item.product_id,
+                //     name: item.product_name,
+                //     price: item.product_price,
+                //     img: item.product_img,
+                //     qty: 1
+                //   })
+                // }
+                onClick={() =>
+                  this.props.addToCart(
+                    item.product_id,
+                    item.product_name,
+                    item.product_price,
+                    item.product_img,
+                    1
+                  )
+                }
+              >
+                Add To Cart
+              </button>
+            </div>
           </div>
-        </div>
+        </Link>
       );
     });
     return (
