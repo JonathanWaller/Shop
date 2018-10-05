@@ -30,43 +30,53 @@ class Store extends Component {
     });
   };
 
-  goToProduct = () => {};
+  // goToProduct = () => {
+  //   this.props.history.push(
+  //     `/product/${this.props.storeReducer.items.product_id}`
+  //     // {`/product/${this.props.storeReducer.items.product_id}`}
+  //   );
+  // };
 
   render() {
     console.log(this.props);
     let storeItems = this.props.storeReducer.items.map(item => {
       return (
-        <Link to={`/product/${item.product_id}`} key={item.product_id}>
-          <div className="store_productWrapper" onClick={this.goToProduct}>
-            <h3>{item.product_name}</h3>
-            <div>${item.product_price}</div>
-            <img src={item.product_img} className="store_productImg" alt="" />
-            <div>
-              <button
-                // onClick={() =>
-                //   this.addHandler({
-                //     id: item.product_id,
-                //     name: item.product_name,
-                //     price: item.product_price,
-                //     img: item.product_img,
-                //     qty: 1
-                //   })
-                // }
-                onClick={() =>
-                  this.props.addToCart(
-                    item.product_id,
-                    item.product_name,
-                    item.product_price,
-                    item.product_img,
-                    1
-                  )
-                }
-              >
-                Add To Cart
-              </button>
+        <div className="store_productWrapper">
+          <Link to={`/product/${item.product_id}`} key={item.product_id}>
+            <div className="store_productText">
+              <h3>{item.product_name}</h3>
+              <div>${item.product_price}</div>
+              <img src={item.product_img} className="store_productImg" alt="" />
             </div>
+          </Link>
+          <div className="store_addButtonWrapper">
+            <button
+              // onClick={() =>
+              //   this.addHandler({
+              //     id: item.product_id,
+              //     name: item.product_name,
+              //     price: item.product_price,
+              //     img: item.product_img,
+              //     qty: 1
+              //   })
+              // }
+              onClick={e => {
+                e.stopPropagation();
+                this.props.addToCart(
+                  item.product_id,
+                  item.product_name,
+                  item.product_price,
+                  item.product_img,
+                  1
+                );
+              }}
+            >
+              Add To Cart
+            </button>
           </div>
-        </Link>
+          {/* </div> */}
+          {/* </Link> */}
+        </div>
       );
     });
     return (
