@@ -47,20 +47,17 @@ class Cart extends Component {
 
     let myCart = this.props.cartReducer.cart.map(item => {
       return (
-        <div key={item.cart_id}>
-          <div>{item.product_name}</div>
-          <div>${item.product_price}</div>
+        <div key={item.cart_id} className="cart_listItem">
           <img src={item.product_img} className="cart_itemImg" alt="" />
           <div>
+            <div>{item.product_name}</div>
             <div>Qty: {item.quantity}</div>
-            <button>Update Qty</button>
-          </div>
-          <div>
             <button onClick={() => this.props.removeFromCart(item.cart_id)}>
               Remove
             </button>
+            <button>Update Qty</button>
           </div>
-          {/* {(this.state.total += item.total)}; */}
+          <div>${item.product_price}</div>
         </div>
       );
     });
@@ -80,12 +77,26 @@ class Cart extends Component {
         {!this.props.cartReducer.cart.length ? (
           "No Items in Cart"
         ) : (
-          <div>
-            {myCart}
-            {/* <button onClick={this.handleCheckout}>Checkout</button> */}
-            <div>
-              Total:$
-              {total}
+          <div className="cart_totalWrapper">
+            <div className="cart_wrapper">
+              <div className="cart_leftPanel">
+                <div className="cart_cartItems">
+                  <h1 className="cart_title">
+                    Your Cart ({this.props.cartReducer.cart.length})
+                  </h1>
+                  {myCart}
+                </div>
+              </div>
+              {/* <button onClick={this.handleCheckout}>Checkout</button> */}
+              <div className="cart_rightPanel">
+                <div className="cart_rightBody">
+                  <h1>Summary</h1>
+                  <h3>Total Items: {this.props.cartReducer.cart.length}</h3>
+                  Total:$
+                  {total}
+                  <button>Checkout</button>
+                </div>
+              </div>
             </div>
           </div>
         )}
