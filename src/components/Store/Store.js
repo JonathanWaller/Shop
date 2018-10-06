@@ -41,8 +41,8 @@ class Store extends Component {
     console.log(this.props);
     let storeItems = this.props.storeReducer.items.map(item => {
       return (
-        <div className="store_productWrapper">
-          <Link to={`/product/${item.product_id}`} key={item.product_id}>
+        <div className="store_productWrapper" key={item.product_id}>
+          <Link to={`/product/${item.product_id}`}>
             <div className="store_productText">
               <h3>{item.product_name}</h3>
               <div>${item.product_price}</div>

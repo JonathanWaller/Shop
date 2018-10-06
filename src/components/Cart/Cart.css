@@ -48,9 +48,22 @@
   margin-left: 5px;
 }
 
-.cart_rightBody {
+.cart_rightInnerDiv {
   border: 1px solid purple;
+  background-color: black;
+  height: 35vh;
   width: 15vw;
+}
+
+.cart_rightBody {
+  border: 1px solid red;
+  padding-left: 8px;
+}
+
+#cart_textColor {
+  color: white;
+  border: 0.3px solid lightgray;
+  height: 5vh;
 }
 
 .cart_itemImg {

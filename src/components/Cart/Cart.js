@@ -22,6 +22,10 @@ class Cart extends Component {
     // });
   }
 
+  handleCheckout = () => {
+    this.props.history.push("/confirmation");
+  };
+
   // handleCheckout = () => {
   //   axios.post("/api/logout");
   //   axios.get("/api/session").then(response => {
@@ -89,12 +93,18 @@ class Cart extends Component {
               </div>
               {/* <button onClick={this.handleCheckout}>Checkout</button> */}
               <div className="cart_rightPanel">
-                <div className="cart_rightBody">
-                  <h1>Summary</h1>
-                  <h3>Total Items: {this.props.cartReducer.cart.length}</h3>
-                  Total:$
-                  {total}
-                  <button>Checkout</button>
+                <div className="cart_rightInnerDiv">
+                  <div className="cart_rightBody">
+                    <h1 id="cart_textColor">Summary</h1>
+                    <h3 id="cart_textColor">
+                      Total Items: {this.props.cartReducer.cart.length}
+                    </h3>
+                    <div id="cart_textColor">
+                      Total:$
+                      {total}
+                    </div>
+                    <button onClick={this.handleCheckout}>Checkout</button>
+                  </div>
                 </div>
               </div>
             </div>
