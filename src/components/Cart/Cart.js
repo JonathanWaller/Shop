@@ -23,6 +23,7 @@ class Cart extends Component {
   }
 
   handleCheckout = () => {
+    axios.delete("/api/cart");
     this.props.history.push("/confirmation");
   };
 

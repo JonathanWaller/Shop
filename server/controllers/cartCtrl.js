@@ -39,6 +39,12 @@ const removeFromCart = (req, res) => {
   });
 };
 
+const deleteFromCart = (req, res) => {
+  console.log(req.params);
+  let db = req.app.get("db");
+  db.cart.deleteFromCart(req.sessionID);
+};
+
 const addSessionCart = (req, res) => {
   console.log("TERM REQ.SESSION.CART: ", req.session.cart);
   res.status(200).json(req.session.cart);
@@ -49,5 +55,6 @@ module.exports = {
   getCart,
   addToCart,
   removeFromCart,
-  addSessionCart
+  addSessionCart,
+  deleteFromCart
 };
