@@ -23,7 +23,7 @@ class Home extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className="home_wrapper">
         <h3 id="home_whiteText">WELCOME TO</h3>

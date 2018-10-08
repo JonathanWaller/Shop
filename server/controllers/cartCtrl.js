@@ -18,11 +18,11 @@ const getCart = (req, res) => {
 // };
 
 const addToCart = (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   // console.log(req.sessionID);
   const { id, name, price, img, qty } = req.body;
   const { sessionID } = req;
-  console.log("SESSIONID: ", sessionID);
+  // console.log("SESSIONID: ", sessionID);
 
   let db = req.app.get("db");
   db.cart.addToCart([id, sessionID, name, price, img, qty]).then(response => {
@@ -39,10 +39,12 @@ const removeFromCart = (req, res) => {
   });
 };
 
-const deleteFromCart = (req, res) => {
-  console.log(req.params);
+const emptyCart = (req, res) => {
+  console.log("plz wrk params: ", req.params);
+  let { id } = req.params;
+
   let db = req.app.get("db");
-  db.cart.deleteFromCart(req.sessionID);
+  db.cart.emptyCart(id);
 };
 
 const addSessionCart = (req, res) => {
@@ -56,5 +58,5 @@ module.exports = {
   addToCart,
   removeFromCart,
   addSessionCart,
-  deleteFromCart
+  emptyCart
 };

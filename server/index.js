@@ -12,7 +12,7 @@ const {
   addToCart,
   removeFromCart,
   addSessionCart,
-  deleteFromCart
+  emptyCart
 } = require("./controllers/cartCtrl");
 
 // middlewares
@@ -79,6 +79,6 @@ app.get("/api/session", (req, res, next) => {
 app.get("/api/cart", getCart);
 app.post("/api/items", addToCart);
 app.delete("/api/item/:id", removeFromCart);
-app.delete("/api/cart", deleteFromCart);
+app.delete("/api/emptyCart/:id", emptyCart);
 
 app.listen(PORT, () => console.log(`Time to shop from ${PORT}`));

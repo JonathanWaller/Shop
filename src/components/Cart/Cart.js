@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getCart, removeFromCart } from "../../ducks/cartReducer";
+import { getCart, removeFromCart, emptyCart } from "../../ducks/cartReducer";
 import "./Cart.css";
 import axios from "axios";
 
@@ -9,12 +9,23 @@ class Cart extends Component {
     super();
     this.state = {
       cart: [],
-      total: 0
+      total: 0,
+      id: null,
+      img: "",
+      name: "",
+      qty: null,
+      price: null
     };
   }
 
   componentDidMount() {
-    this.props.getCart();
+    // console.log("eagle has landed");
+    // let {cart_id, product_id, product_img, product_name, product_price, quantity} = this.props.cartReducer.cart
+    this.props.getCart().then(() => {
+      this.setState({ cart: this.props.cartReducer.cart });
+      // console.log(response);
+    });
+
     // this.props.cartReducer.total +=
     // axios.get("/api/session").then(response => {
     //   console.log(response);
@@ -22,10 +33,15 @@ class Cart extends Component {
     // });
   }
 
-  handleCheckout = () => {
-    axios.delete("/api/cart").then(() => {
-      this.props.getCart();
-    });
+  // handleCheckout = () => {
+  //   axios.delete("/api/cart").then(() => {
+  //     this.props.getCart();
+  //   });
+  //   this.props.history.push("/confirmation");
+  // };
+
+  handleCheckout = id => {
+    this.props.emptyCart(id);
     this.props.history.push("/confirmation");
   };
 
@@ -52,7 +68,8 @@ class Cart extends Component {
     //     );
     //   });
 
-    let myCart = this.props.cartReducer.cart.map(item => {
+    let myCart = this.state.cart.map(item => {
+      // let myCart = this.props.cartReducer.cart.map(item => {
       return (
         <div key={item.cart_id} className="cart_listItem">
           <img src={item.product_img} className="cart_itemImg" alt="" />
@@ -72,7 +89,7 @@ class Cart extends Component {
       (total, elem) => (total += elem.product_price * elem.quantity),
       0
     );
-    console.log("MYTOTAL: ", total);
+    // console.log("MYTOTAL: ", total);
     return (
       <div>
         {this.props.cartReducer.isLoading ? (
@@ -109,7 +126,11 @@ class Cart extends Component {
                       {total}
                     </div>
                     <button
-                      onClick={this.handleCheckout}
+                      onClick={() =>
+                        this.handleCheckout(
+                          this.props.cartReducer.cart[0].session_id
+                        )
+                      }
                       className="cart_checkoutButton"
                     >
                       Checkout
@@ -129,5 +150,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getCart, removeFromCart }
+  { getCart, removeFromCart, emptyCart }
 )(Cart);

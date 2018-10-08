@@ -4,6 +4,7 @@ import axios from "axios";
 const GET_CART = "GET_CART";
 const ADD_TO_CART = "ADD_TO_CART";
 const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+const EMPTY_CART = "EMPTY_CART";
 // ACTION CREATORS
 export function getCart() {
   return {
@@ -32,6 +33,12 @@ export function removeFromCart(id) {
   };
 }
 
+export function emptyCart(id) {
+  return {
+    type: EMPTY_CART,
+    payload: axios.delete(`/api/emptyCart/${id}`)
+  };
+}
 // initial state
 const initialState = {
   cart: [],
@@ -41,6 +48,7 @@ const initialState = {
 
 // reducer
 export default function cartReducer(state = initialState, action) {
+  console.log(action);
   switch (action.type) {
     case `${GET_CART}_PENDING`:
       return {
@@ -63,6 +71,12 @@ export default function cartReducer(state = initialState, action) {
         ...state,
         cart: action.payload.data
       };
+    case `${EMPTY_CART}_FULFILLED`:
+      return {
+        ...state,
+        cart: action.payload.data
+      };
+
     default:
       return state;
   }

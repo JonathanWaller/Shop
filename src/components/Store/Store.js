@@ -16,7 +16,7 @@ class Store extends Component {
   componentDidMount() {
     this.props.getStore();
     axios.get("/api/session").then(response => {
-      console.log(response);
+      // console.log(response);
     });
   }
 
@@ -38,7 +38,7 @@ class Store extends Component {
   // };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     let storeItems = this.props.storeReducer.items.map(item => {
       return (
         <div className="store_productWrapper" key={item.product_id}>

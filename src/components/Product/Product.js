@@ -49,8 +49,8 @@ class Product extends Component {
   };
 
   render() {
-    console.log(this.props);
-    console.log(this.state);
+    // console.log(this.props);
+    // console.log(this.state);
     let { product } = this.props.productReducer;
     let { id, name, price, img, qty, description } = this.state;
     // let myProduct = product.map(elem => {
