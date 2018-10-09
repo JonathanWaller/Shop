@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 import { getStore } from "../../ducks/storeReducer";
 import { addToCart } from "../../ducks/cartReducer";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import "./Store.css";
 // import axios from "axios";
 
 class Store extends Component {
+  notify = () => toast("Item added to cart");
   constructor() {
     super();
     this.state = {};
@@ -20,15 +22,15 @@ class Store extends Component {
     });
   }
 
-  addHandler = ({ id, name, price, img, qty }) => {
-    axios.post("/api/items", {
-      id,
-      name,
-      price,
-      img,
-      qty
-    });
-  };
+  // addHandler = ({ id, name, price, img, qty }) => {
+  //   axios.post("/api/items", {
+  //     id,
+  //     name,
+  //     price,
+  //     img,
+  //     qty
+  //   });
+  // };
 
   // goToProduct = () => {
   //   this.props.history.push(
@@ -61,18 +63,24 @@ class Store extends Component {
               //   })
               // }
               onClick={e => {
-                e.stopPropagation();
-                this.props.addToCart(
-                  item.product_id,
-                  item.product_name,
-                  item.product_price,
-                  item.product_img,
-                  1
-                );
+                this.props
+                  .addToCart(
+                    item.product_id,
+                    item.product_name,
+                    item.product_price,
+                    item.product_img,
+                    1
+                  )
+                  .then(() =>
+                    toast.success("Added to cart", {
+                      position: toast.POSITION.TOP_RIGHT
+                    })
+                  );
               }}
             >
               Add To Cart
             </button>
+            {/* <ToastContainer /> */}
           </div>
           {/* </div> */}
           {/* </Link> */}
@@ -80,15 +88,18 @@ class Store extends Component {
       );
     });
     return (
-      <div className="store_wrapper">
-        {this.props.storeReducer.isLoading ? (
-          <img
-            src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif"
-            alt=""
-          />
-        ) : null}
+      <div>
+        <ToastContainer />
+        <div className="store_wrapper">
+          {this.props.storeReducer.isLoading ? (
+            <img
+              src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif"
+              alt=""
+            />
+          ) : null}
 
-        {storeItems}
+          {storeItems}
+        </div>
       </div>
     );
   }
