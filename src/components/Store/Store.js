@@ -40,7 +40,8 @@ class Store extends Component {
   // };
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
+    console.log(this.props.storeReducer);
     let storeItems = this.props.storeReducer.items.map(item => {
       return (
         <div className="store_productWrapper" key={item.product_id}>
@@ -89,7 +90,7 @@ class Store extends Component {
     });
     return (
       <div>
-        <ToastContainer />
+        <ToastContainer position="top-right" autoClose={5000} />
         <div className="store_wrapper">
           {this.props.storeReducer.isLoading ? (
             <img

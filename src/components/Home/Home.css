@@ -5,12 +5,42 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(38, 38, 38, 0.8),
+      rgba(38, 38, 38, 0.8)
+        /* rgba(77, 77, 77, 0.8),
+      rgba(77, 77, 77, 0.8) */
+    ),
+    url("../../images/black-gold-typewriter.jpg");
+  background-size: cover;
+  background-position: top;
+  position: relative;
+}
+
+.home_textWrapper {
+  height: 40vh;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 #home_whiteText {
   color: white;
+  font-size: 30px;
 }
 
 #home_goldText {
   color: #ad8c4c;
+  font-size: 40px;
+}
+
+/* .home_laavish{
+  font-size
+} */
+
+.home_enter {
+  cursor: pointer;
 }
