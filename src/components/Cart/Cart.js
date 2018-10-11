@@ -40,13 +40,51 @@ class Cart extends Component {
   //   this.props.history.push("/confirmation");
   // };
 
-  removeFromCart = id => {
-    this.props.removeFromCart(id).then(response => {
+  // toggleLiked = async ind => {
+  //   await Promise.all([
+  //     this.props.getProperties(),
+  //     this.props.getReviews(),
+  //     this.props.getAvgRating(),
+  //     this.props.getFavorites(this.props.user.userid)
+  //   ]);
+  // };
+
+  // editHandler = async id => {
+  //   await Promise.all([
+  //     axios.put(`/api/property/${id}`, {
+  //       property_title: this.state.title,
+  //       // property_location: this.state.location,
+  //       beds: this.state.beds,
+  //       baths: this.state.baths,
+  //       description: this.state.description,
+  //       amen_1: this.state.amen1,
+  //       amen_2: this.state.amen2,
+  //       amen_3: this.state.amen3,
+  //       price: this.state.rate,
+  //       // firebaseImg: this.state.firebaseImg
+  //       image_url: this.state.firebaseImg
+  //     }),
+  //     this.props.getProperties(),
+  //     this.props.history.replace(`/property/${this.props.property.id}`)
+  //   ]);
+  // };
+
+  removeFromCart = async id => {
+    await Promise.all([
+      this.props.removeFromCart(id),
       this.props.getCart().then(() => {
         this.setState({ cart: this.props.cartReducer.cart });
-      });
-    });
+      })
+    ]);
   };
+
+  // removeFromCart = id => {
+  //   this.props.removeFromCart(id).then(response => {
+  //     this.props.getCart().then(() => {
+  //       this.setState({ cart: this.props.cartReducer.cart });
+  //     });
+  //   });
+  // };
 
   handleCheckout = id => {
     this.props.emptyCart(id);
@@ -133,8 +171,7 @@ class Cart extends Component {
                       Total Items: {this.props.cartReducer.cart.length}
                     </h3>
                     <div id="cart_textColor" className="cart_totalPrice">
-                      Total:$
-                      {total}
+                      Total: ${total}
                     </div>
                     <button
                       onClick={() =>

@@ -54,6 +54,7 @@ class Store extends Component {
           </Link>
           <div className="store_addButtonWrapper">
             <button
+              className="store_addButton"
               // onClick={() =>
               //   this.addHandler({
               //     id: item.product_id,
