@@ -20,6 +20,11 @@
   height: 4h;
 }
 
+.store_addButton {
+  background-color: black;
+  color: white;
+}
+
 .store_productText {
   /* border: 1px solid green; */
   height: 26vh;
@@ -28,6 +33,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  text-decoration: none;
 }
 
 .store_productImg {

@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { getProduct } from "../../ducks/productReducer";
 import { addToCart } from "../../ducks/cartReducer";
 
+import "./Product.css";
+
 import axios from "axios";
 //import './Product.css';
 
@@ -81,18 +83,22 @@ class Product extends Component {
     //   );
     // });
     return (
-      <div className="">
+      <div className="product_wrapper">
         {!this.props.productReducer.product.length ? (
           <img src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif" />
         ) : null}
         {/* {myProduct} */}
-        <div>{name}</div>
-        <div>${price}</div>
-        <img src={img} style={{ height: 50, width: 50 }} />
-        <div>{description}</div>
-        <button onClick={() => this.props.addToCart(id, name, price, img, 1)}>
-          Add to Cart
-        </button>
+        {/* <div className="product_innerWrapper"> */}
+        <img src={img} style={{ height: 350 }} className="product_leftPanel" />
+        <div className="product_rightPanel">
+          <div>{name}</div>
+          <div>${price}</div>
+          <div>{description}</div>
+          <button onClick={() => this.props.addToCart(id, name, price, img, 1)}>
+            Add to Cart
+          </button>
+        </div>
+        {/* </div> */}
       </div>
     );
   }
