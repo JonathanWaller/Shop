@@ -40,6 +40,14 @@ class Cart extends Component {
   //   this.props.history.push("/confirmation");
   // };
 
+  removeFromCart = id => {
+    this.props.removeFromCart(id).then(response => {
+      this.props.getCart().then(() => {
+        this.setState({ cart: this.props.cartReducer.cart });
+      });
+    });
+  };
+
   handleCheckout = id => {
     this.props.emptyCart(id);
     this.props.history.push("/confirmation");
@@ -76,9 +84,12 @@ class Cart extends Component {
           <div>
             <div>{item.product_name}</div>
             <div>Qty: {item.quantity}</div>
-            <button onClick={() => this.props.removeFromCart(item.cart_id)}>
+            <button onClick={() => this.removeFromCart(item.cart_id)}>
               Remove
             </button>
+            {/* <button onClick={() => this.props.removeFromCart(item.cart_id)}>
+              Remove
+            </button> */}
             <button>Update Qty</button>
           </div>
           <div>${item.product_price}</div>
