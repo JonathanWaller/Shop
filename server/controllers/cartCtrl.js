@@ -20,14 +20,16 @@ const getCart = (req, res) => {
 const addToCart = (req, res) => {
   // console.log(req.body);
   // console.log(req.sessionID);
-  const { id, name, price, img, qty } = req.body;
+  const { id, name, price, img, qty, size } = req.body;
   const { sessionID } = req;
   // console.log("SESSIONID: ", sessionID);
 
   let db = req.app.get("db");
-  db.cart.addToCart([id, sessionID, name, price, img, qty]).then(response => {
-    res.status(200).json(response);
-  });
+  db.cart
+    .addToCart([id, sessionID, name, price, img, qty, size])
+    .then(response => {
+      res.status(200).json(response);
+    });
 };
 
 const removeFromCart = (req, res) => {

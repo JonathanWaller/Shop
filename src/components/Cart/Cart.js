@@ -21,7 +21,8 @@ class Cart extends Component {
   componentDidMount() {
     // console.log("eagle has landed");
     // let {cart_id, product_id, product_img, product_name, product_price, quantity} = this.props.cartReducer.cart
-    this.props.getCart().then(() => {
+    this.props.getCart().then(response => {
+      console.log(response);
       this.setState({ cart: this.props.cartReducer.cart });
       // console.log(response);
     });
@@ -121,6 +122,9 @@ class Cart extends Component {
           <img src={item.product_img} className="cart_itemImg" alt="" />
           <div>
             <div>{item.product_name}</div>
+            {item.product_size === null ? null : (
+              <div>Size: {item.product_size}</div>
+            )}
             <div>Qty: {item.quantity}</div>
             <button onClick={() => this.removeFromCart(item.cart_id)}>
               Remove
