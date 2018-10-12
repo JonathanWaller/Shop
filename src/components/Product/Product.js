@@ -89,11 +89,13 @@ class Product extends Component {
         ) : null}
         {/* {myProduct} */}
         {/* <div className="product_innerWrapper"> */}
-        <img src={img} style={{ height: 350 }} className="product_leftPanel" />
+        <div className="product_leftPanel">
+          <img className="product_image" src={img} style={{ height: 450 }} />
+        </div>
         <div className="product_rightPanel">
-          <div>{name}</div>
-          <div>${price}</div>
+          <div className="product_name">{name}</div>
           <div>{description}</div>
+          <div>${price}</div>
           <button onClick={() => this.props.addToCart(id, name, price, img, 1)}>
             Add to Cart
           </button>
