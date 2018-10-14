@@ -125,6 +125,15 @@ class Cart extends Component {
             {item.product_size === null ? null : (
               <div>Size: {item.product_size}</div>
             )}
+            {/* <form>
+              Size:
+              <input type="number" name="size" min="30" max="36" />
+            </form> */}
+            <select>
+              <option>30</option>
+              <option>32</option>
+              <option>34</option>
+            </select>
             <div>Qty: {item.quantity}</div>
             <button onClick={() => this.removeFromCart(item.cart_id)}>
               Remove
@@ -132,7 +141,7 @@ class Cart extends Component {
             {/* <button onClick={() => this.props.removeFromCart(item.cart_id)}>
               Remove
             </button> */}
-            <button>Update Qty</button>
+            <button>Edit</button>
           </div>
           <div>${item.product_price}</div>
         </div>

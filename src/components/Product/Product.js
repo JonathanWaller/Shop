@@ -17,7 +17,8 @@ class Product extends Component {
       price: null,
       img: "",
       qty: null,
-      description: ""
+      description: "",
+      size: ""
     };
   }
 
@@ -28,6 +29,7 @@ class Product extends Component {
   //   }
 
   componentDidMount() {
+    const { product } = this.props.productReducer;
     this.props.getProduct(this.props.match.params.id).then(() => {
       //   console.log(response);
       this.setState({
@@ -35,7 +37,8 @@ class Product extends Component {
         name: this.props.productReducer.product[0].product_name,
         price: this.props.productReducer.product[0].product_price,
         img: this.props.productReducer.product[0].product_img,
-        description: this.props.productReducer.product[0].product_description
+        description: this.props.productReducer.product[0].product_description,
+        size: this.props.productReducer.product[0].product_size
       });
     });
   }
@@ -54,7 +57,7 @@ class Product extends Component {
     // console.log(this.props);
     // console.log(this.state);
     let { product } = this.props.productReducer;
-    let { id, name, price, img, qty, description } = this.state;
+    let { id, name, price, img, qty, description, size } = this.state;
     // let myProduct = product.map(elem => {
     //   return (
     //     <div key={elem.product_id}>
@@ -95,6 +98,7 @@ class Product extends Component {
         <div className="product_rightPanel">
           <div className="product_name">{name}</div>
           <div>{description}</div>
+          <div>Size: {size}</div>
           <div>${price}</div>
           <button onClick={() => this.props.addToCart(id, name, price, img, 1)}>
             Add to Cart
