@@ -43,7 +43,7 @@ class Store extends Component {
     console.log(this.props);
     console.log(this.props.storeReducer);
     let storeItems = this.props.storeReducer.items.map(item => {
-      // console.log(item);
+      console.log(item);
       // console.log(item.product_size === null);
       return (
         <div className="store_productWrapper" key={item.product_id}>
@@ -76,8 +76,9 @@ class Store extends Component {
                     item.product_name,
                     item.product_price,
                     item.product_img,
-                    1,
-                    item.product_size
+                    item.product_quantity,
+                    item.product_size,
+                    item.product_category
                   )
                   .then(() =>
                     toast.success("Added to cart", {
