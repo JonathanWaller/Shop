@@ -20,13 +20,13 @@ const getCart = (req, res) => {
 const addToCart = (req, res) => {
   // console.log(req.body);
   // console.log(req.sessionID);
-  const { id, name, price, img, qty, size } = req.body;
+  const { id, name, price, img, qty, size, category } = req.body;
   const { sessionID } = req;
   // console.log("SESSIONID: ", sessionID);
 
   let db = req.app.get("db");
   db.cart
-    .addToCart([id, sessionID, name, price, img, qty, size])
+    .addToCart([id, sessionID, name, price, img, qty, size, category])
     .then(response => {
       res.status(200).json(response);
     });

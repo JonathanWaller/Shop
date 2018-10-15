@@ -13,7 +13,7 @@ export function getCart() {
   };
 }
 
-export function addToCart(id, name, price, img, qty, size) {
+export function addToCart(id, name, price, img, qty, size, category) {
   return {
     type: ADD_TO_CART,
     payload: axios.post("/api/items", {
@@ -22,7 +22,8 @@ export function addToCart(id, name, price, img, qty, size) {
       price,
       img,
       qty,
-      size
+      size,
+      category
     })
   };
 }

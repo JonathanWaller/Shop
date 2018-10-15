@@ -14,7 +14,13 @@ class Cart extends Component {
       img: "",
       name: "",
       qty: null,
-      price: null
+      price: null,
+      size: null,
+      category: "",
+      defaultQty: 1,
+      shirtSize: "M",
+      pantSize: 30,
+      shoeSize: 10
     };
   }
 
@@ -134,7 +140,8 @@ class Cart extends Component {
               <option>32</option>
               <option>34</option>
             </select>
-            <div>Qty: {item.quantity}</div>
+            <div>Qty: {this.state.defaultQty}</div>
+            {/* <div>Qty: {item.quantity}</div> */}
             <button onClick={() => this.removeFromCart(item.cart_id)}>
               Remove
             </button>
@@ -148,7 +155,7 @@ class Cart extends Component {
       );
     });
     let total = this.props.cartReducer.cart.reduce(
-      (total, elem) => (total += elem.product_price * elem.quantity),
+      (total, elem) => (total += elem.product_price * elem.product_quantity),
       0
     );
     // console.log("MYTOTAL: ", total);
