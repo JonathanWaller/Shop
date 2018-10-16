@@ -40,12 +40,23 @@ class Cart extends Component {
     // });
   }
 
-  pantSizeHandler = (e, i) => {
-    let name = e.target.name;
-    let newPantSize = this.state.pantSize.slice();
-    newPantSize[i][name] = +e.target.value;
-    this.setState({
-      pantSize: newPantSize
+  pantSizeHandler = (cartId, e, i) => {
+    console.log(e.target.value);
+    axios.put(`/api/size/${cartId}`, {
+      product_size: +e.target.value
+    });
+    // let name = e.target.name;
+    // let newPantSize = this.state.pantSize.slice();
+    // newPantSize[i][name] = +e.target.value;
+    // this.setState({
+    //   pantSize: newPantSize
+    // });
+  };
+
+  quantityHandler = (cartId, e, i) => {
+    console.log(e.target.value);
+    axios.put(`/api/quantity/${cartId}`, {
+      product_quantity: +e.target.value
     });
   };
 
@@ -135,6 +146,7 @@ class Cart extends Component {
 
     let myCart = this.state.cart.map((item, i) => {
       // let myCart = this.props.cartReducer.cart.map(item => {
+      console.log(item);
       return (
         <div key={item.cart_id} className="cart_listItem">
           <img src={item.product_img} className="cart_itemImg" alt="" />
@@ -147,16 +159,32 @@ class Cart extends Component {
               Size:
               <input type="number" name="size" min="30" max="36" />
             </form> */}
-            <select
-              name="pants"
-              value={this.state.pantSize}
-              onChange={e => this.pantSizeHandler(e, i)}
-            >
-              <option value="30">30</option>
-              <option value="32">32</option>
-              <option value="34">34</option>
-            </select>
-            <div>Qty: {this.state.defaultQty}</div>
+            <div>
+              <div>Size:</div>
+              <select
+                name="pants"
+                // value={this.state.pantSize}
+                value={this.state.cart[i].product_size}
+                onChange={e => this.pantSizeHandler(item.cart_id, e, i)}
+              >
+                <option value="30">30</option>
+                <option value="32">32</option>
+                <option value="34">34</option>
+              </select>
+            </div>
+            {/* <div>Qty: {this.state.defaultQty}</div> */}
+            <div>
+              <div>Qty:</div>
+              <select
+                name="qty"
+                value={this.state.cart[i].product_quantity}
+                onChange={e => this.quantityHandler(item.cart_id, e, i)}
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
             {/* <div>Qty: {item.quantity}</div> */}
             <button onClick={() => this.removeFromCart(item.cart_id)}>
               Remove

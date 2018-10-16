@@ -41,6 +41,28 @@ const removeFromCart = (req, res) => {
   });
 };
 
+const updateQty = (req, res) => {
+  console.log(req.params);
+  console.log(req.body);
+  let { id } = req.params;
+  let { product_quantity } = req.body;
+  let db = req.app.get("db");
+  db.cart.updateQty(id, product_quantity).then(response => {
+    res.status(200).json(response);
+  });
+};
+
+const updateSize = (req, res) => {
+  console.log(req.params);
+  console.log(req.body);
+  let { id } = req.params;
+  let { product_size } = req.body;
+  let db = req.app.get("db");
+  db.cart.updateSize(id, product_size).then(response => {
+    res.status(200).json(response);
+  });
+};
+
 const emptyCart = (req, res) => {
   console.log("plz wrk params: ", req.params);
   let { id } = req.params;
@@ -60,5 +82,7 @@ module.exports = {
   addToCart,
   removeFromCart,
   addSessionCart,
-  emptyCart
+  emptyCart,
+  updateSize,
+  updateQty
 };
