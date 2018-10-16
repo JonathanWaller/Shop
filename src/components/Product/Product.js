@@ -45,18 +45,8 @@ class Product extends Component {
     });
   }
 
-  sizeHandler = (id, e) => {
-    this.setState({ size: +e.target.value });
-    //   axios.put(`/api/size/${id}`, {
-    //     product_size: +e.target.value
-    //   });
-  };
-
-  qtyHandler = (id, e) => {
-    this.setState({ qty: +e.target.value });
-    //   axios.put(`/api/size/${id}`, {
-    //     product_size: +e.target.value
-    //   });
+  inputHandler = e => {
+    this.setState({ [e.target.name]: +e.target.value });
   };
 
   addHandler = ({ id, name, price, img, qty }) => {
@@ -118,9 +108,9 @@ class Product extends Component {
           <div>
             <div>Size:</div>
             <select
-              name="shoes"
+              name="size"
               value={this.state.size}
-              onChange={e => this.sizeHandler(this.state.id, e)}
+              onChange={e => this.inputHandler(e)}
             >
               <option value="9.5">9.5</option>
               <option value="10">10</option>
@@ -135,7 +125,7 @@ class Product extends Component {
             <select
               name="qty"
               value={this.state.qty}
-              onChange={e => this.qtyHandler(this.state.id, e)}
+              onChange={e => this.inputHandler(e)}
             >
               <option value="1">1</option>
               <option value="2">2</option>
