@@ -19,7 +19,7 @@ class Cart extends Component {
       category: "",
       defaultQty: 1,
       shirtSize: "M",
-      pantSize: 30,
+      pantSize: "30",
       shoeSize: 10
     };
   }
@@ -39,6 +39,15 @@ class Cart extends Component {
     //   this.setState({ cart: response.data.cart, total: response.data.total });
     // });
   }
+
+  pantSizeHandler = (e, i) => {
+    let name = e.target.name;
+    let newPantSize = this.state.pantSize.slice();
+    newPantSize[i][name] = +e.target.value;
+    this.setState({
+      pantSize: newPantSize
+    });
+  };
 
   // handleCheckout = () => {
   //   axios.delete("/api/cart").then(() => {
@@ -108,6 +117,9 @@ class Cart extends Component {
   render() {
     console.log("STATE: ", this.state);
     console.log(this.props);
+    let testNum = "30";
+    let newNum = testNum.slice();
+    console.log(newNum);
 
     // let myCart =
     //   this.state.cart.length &&
@@ -121,24 +133,28 @@ class Cart extends Component {
     //     );
     //   });
 
-    let myCart = this.state.cart.map(item => {
+    let myCart = this.state.cart.map((item, i) => {
       // let myCart = this.props.cartReducer.cart.map(item => {
       return (
         <div key={item.cart_id} className="cart_listItem">
           <img src={item.product_img} className="cart_itemImg" alt="" />
           <div>
             <div>{item.product_name}</div>
-            {item.product_size === null ? null : (
+            {/* {item.product_size === null ? null : (
               <div>Size: {item.product_size}</div>
-            )}
+            )} */}
             {/* <form>
               Size:
               <input type="number" name="size" min="30" max="36" />
             </form> */}
-            <select>
-              <option>30</option>
-              <option>32</option>
-              <option>34</option>
+            <select
+              name="pants"
+              value={this.state.pantSize}
+              onChange={e => this.pantSizeHandler(e, i)}
+            >
+              <option value="30">30</option>
+              <option value="32">32</option>
+              <option value="34">34</option>
             </select>
             <div>Qty: {this.state.defaultQty}</div>
             {/* <div>Qty: {item.quantity}</div> */}
