@@ -51,9 +51,9 @@ class Store extends Component {
             <div className="store_productText">
               <h3>{item.product_name}</h3>
               <div>${item.product_price}</div>
-              {item.product_size === null ? null : (
+              {/* {item.product_size === null ? null : (
                 <div>Size: {item.product_size}</div>
-              )}
+              )} */}
               <img src={item.product_img} className="store_productImg" alt="" />
             </div>
           </Link>
