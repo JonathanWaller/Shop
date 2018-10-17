@@ -45,18 +45,8 @@ class Product extends Component {
     });
   }
 
-  sizeHandler = (id, e) => {
-    this.setState({ size: +e.target.value });
-    //   axios.put(`/api/size/${id}`, {
-    //     product_size: +e.target.value
-    //   });
-  };
-
-  qtyHandler = (id, e) => {
-    this.setState({ qty: +e.target.value });
-    //   axios.put(`/api/size/${id}`, {
-    //     product_size: +e.target.value
-    //   });
+  inputHandler = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   addHandler = ({ id, name, price, img, qty }) => {
@@ -117,25 +107,52 @@ class Product extends Component {
           {/* <div>Size: {size}</div> */}
           <div>
             <div>Size:</div>
-            <select
-              name="shoes"
-              value={this.state.size}
-              onChange={e => this.sizeHandler(this.state.id, e)}
-            >
-              <option value="9.5">9.5</option>
-              <option value="10">10</option>
-              <option value="10.5">10.5</option>
-              <option value="11">11</option>
-              <option value="11.5">11.5</option>
-              <option value="12">12</option>
-            </select>
+
+            {this.state.category === "pants" ? (
+              <select
+                name="size"
+                value={this.state.size}
+                onChange={e => this.inputHandler(e)}
+              >
+                <option value="30x30">30x30</option>
+                <option value="32x30">32x30</option>
+                <option value="32x32">32x32</option>
+                <option value="34x32">34x32</option>
+                <option value="34x34">34x34</option>
+              </select>
+            ) : this.state.category === "shoes" ? (
+              <select
+                name="size"
+                value={this.state.size}
+                onChange={e => this.inputHandler(e)}
+              >
+                <option value="9.5">9.5</option>
+                <option value="10">10</option>
+                <option value="10.5">10.5</option>
+                <option value="11">11</option>
+                <option value="11.5">11.5</option>
+                <option value="12">12</option>
+              </select>
+            ) : this.state.category === "shirt" ? (
+              <select
+                name="size"
+                value={this.state.size}
+                onChange={e => this.inputHandler(e)}
+              >
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
+            ) : null}
           </div>
+
           <div>
             <div>Qty:</div>
             <select
               name="qty"
               value={this.state.qty}
-              onChange={e => this.qtyHandler(this.state.id, e)}
+              onChange={e => this.inputHandler(e)}
             >
               <option value="1">1</option>
               <option value="2">2</option>

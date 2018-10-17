@@ -43,7 +43,7 @@ class Cart extends Component {
   pantSizeHandler = (cartId, e, i) => {
     console.log(e.target.value);
     axios.put(`/api/size/${cartId}`, {
-      product_size: +e.target.value
+      product_size: e.target.value
     });
     // let name = e.target.name;
     // let newPantSize = this.state.pantSize.slice();
@@ -164,12 +164,14 @@ class Cart extends Component {
               <select
                 name="pants"
                 // value={this.state.pantSize}
-                value={this.state.cart[i].product_size}
+                // value={this.state.cart[i].product_size}
                 onChange={e => this.pantSizeHandler(item.cart_id, e, i)}
               >
-                <option value="30">30</option>
-                <option value="32">32</option>
-                <option value="34">34</option>
+                <option value="30x30">30x30</option>
+                <option value="32x30">32x30</option>
+                <option value="32x32">32x32</option>
+                <option value="34x32">34x32</option>
+                <option value="34x34">34x34</option>
               </select>
             </div>
             {/* <div>Qty: {this.state.defaultQty}</div> */}
@@ -183,6 +185,8 @@ class Cart extends Component {
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
               </select>
             </div>
             {/* <div>Qty: {item.quantity}</div> */}
