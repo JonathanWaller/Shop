@@ -20,15 +20,15 @@ class Cart extends Component {
       defaultQty: 1,
       shirtSize: "M",
       pantSize: "30",
-      shoeSize: 10
+      shoeSize: 10,
+      toggleSelect: false
     };
   }
 
   componentDidMount() {
-    // console.log("eagle has landed");
     // let {cart_id, product_id, product_img, product_name, product_price, quantity} = this.props.cartReducer.cart
     this.props.getCart().then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({ cart: this.props.cartReducer.cart });
       // console.log(response);
     });
@@ -60,42 +60,6 @@ class Cart extends Component {
     });
   };
 
-  // handleCheckout = () => {
-  //   axios.delete("/api/cart").then(() => {
-  //     this.props.getCart();
-  //   });
-  //   this.props.history.push("/confirmation");
-  // };
-
-  // toggleLiked = async ind => {
-  //   await Promise.all([
-  //     this.props.getProperties(),
-  //     this.props.getReviews(),
-  //     this.props.getAvgRating(),
-  //     this.props.getFavorites(this.props.user.userid)
-  //   ]);
-  // };
-
-  // editHandler = async id => {
-  //   await Promise.all([
-  //     axios.put(`/api/property/${id}`, {
-  //       property_title: this.state.title,
-  //       // property_location: this.state.location,
-  //       beds: this.state.beds,
-  //       baths: this.state.baths,
-  //       description: this.state.description,
-  //       amen_1: this.state.amen1,
-  //       amen_2: this.state.amen2,
-  //       amen_3: this.state.amen3,
-  //       price: this.state.rate,
-  //       // firebaseImg: this.state.firebaseImg
-  //       image_url: this.state.firebaseImg
-  //     }),
-  //     this.props.getProperties(),
-  //     this.props.history.replace(`/property/${this.props.property.id}`)
-  //   ]);
-  // };
-
   removeFromCart = async id => {
     await Promise.all([
       this.props.removeFromCart(id),
@@ -105,76 +69,94 @@ class Cart extends Component {
     ]);
   };
 
-  // removeFromCart = id => {
-  //   this.props.removeFromCart(id).then(response => {
-  //     this.props.getCart().then(() => {
-  //       this.setState({ cart: this.props.cartReducer.cart });
-  //     });
-  //   });
-  // };
-
   handleCheckout = id => {
     this.props.emptyCart(id);
     this.props.history.push("/confirmation");
   };
 
-  // handleCheckout = () => {
-  //   axios.post("/api/logout");
-  //   axios.get("/api/session").then(response => {
-  //     this.setState({ cart: response.data });
-  //   });
-  // };
+  handleToggle = () => {
+    this.setState({ toggleSelect: !this.state.toggleSelect });
+  };
 
   render() {
     console.log("STATE: ", this.state);
-    console.log(this.props);
+    // console.log(this.props);
     let testNum = "30";
     let newNum = testNum.slice();
-    console.log(newNum);
-
-    // let myCart =
-    //   this.state.cart.length &&
-    //   this.state.cart.map(elem => {
-    //     return (
-    //       <div key={elem.id}>
-    //         <div>{elem.name}</div>
-    //         <div>${elem.price}</div>
-    //         <img src={elem.img} style={{ height: 45, width: 45 }} />
-    //       </div>
-    //     );
-    //   });
+    // console.log(newNum);
 
     let myCart = this.state.cart.map((item, i) => {
-      // let myCart = this.props.cartReducer.cart.map(item => {
       console.log(item);
       return (
         <div key={item.cart_id} className="cart_listItem">
           <img src={item.product_img} className="cart_itemImg" alt="" />
           <div>
             <div>{item.product_name}</div>
-            {/* {item.product_size === null ? null : (
-              <div>Size: {item.product_size}</div>
-            )} */}
-            {/* <form>
-              Size:
-              <input type="number" name="size" min="30" max="36" />
-            </form> */}
-            <div>
-              <div>Size:</div>
-              <select
-                name="pants"
-                // value={this.state.pantSize}
-                // value={this.state.cart[i].product_size}
-                onChange={e => this.pantSizeHandler(item.cart_id, e, i)}
-              >
-                <option value="30x30">30x30</option>
-                <option value="32x30">32x30</option>
-                <option value="32x32">32x32</option>
-                <option value="34x32">34x32</option>
-                <option value="34x34">34x34</option>
-              </select>
-            </div>
-            {/* <div>Qty: {this.state.defaultQty}</div> */}
+            {!this.state.toggleSelect ? (
+              <div className="cart_sizeEditWrapper">
+                <div>Size: {item.product_size}</div>
+                <button onClick={() => this.handleToggle()}>Edit</button>
+              </div>
+            ) : (
+              <p>No thanks</p>
+              // <div>
+              //   {item.product_category === "pants" ? (
+              //     <select
+              //       name="size"
+              //       value={this.state.size}
+              //       onChange={e => this.inputHandler(e)}
+              //     >
+              //       <option value="30x30">30x30</option>
+              //       <option value="32x30">32x30</option>
+              //       <option value="32x32">32x32</option>
+              //       <option value="34x32">34x32</option>
+              //       <option value="34x34">34x34</option>
+              //     </select>
+              //   ) : this.state.category === "shoes" ? (
+              //     <select
+              //       name="size"
+              //       value={this.state.size}
+              //       onChange={e => this.inputHandler(e)}
+              //     >
+              //       <option value="9.5">9.5</option>
+              //       <option value="10">10</option>
+              //       <option value="10.5">10.5</option>
+              //       <option value="11">11</option>
+              //       <option value="11.5">11.5</option>
+              //       <option value="12">12</option>
+              //     </select>
+              //   ) : this.state.category === "shirt" ? (
+              //     <select
+              //       name="size"
+              //       value={this.state.size}
+              //       onChange={e => this.inputHandler(e)}
+              //     >
+              //       <option value="S">S</option>
+              //       <option value="M">M</option>
+              //       <option value="L">L</option>
+              //       <option value="XL">XL</option>
+              //     </select>
+              //   ) : null}
+              // </div>
+
+              // <div>
+              //   <div>Size:</div>
+              //   <select
+              //     name="pants"
+              //     onChange={e => this.pantSizeHandler(item.cart_id, e, i)}
+              //   >
+              //     <option value="30x30">30x30</option>
+              //     <option value="32x30">32x30</option>
+              //     <option value="32x32">32x32</option>
+              //     <option value="34x32">34x32</option>
+              //     <option value="34x34">34x34</option>
+              //   </select>
+              //   <button onClick={() => this.handleToggle()}>Cancel</button>
+              // </div>
+            )}
+
+            <div>Qty: {item.product_quantity}</div>
+
             <div>
               <div>Qty:</div>
               <select
@@ -193,9 +175,6 @@ class Cart extends Component {
             <button onClick={() => this.removeFromCart(item.cart_id)}>
               Remove
             </button>
-            {/* <button onClick={() => this.props.removeFromCart(item.cart_id)}>
-              Remove
-            </button> */}
             <button>Edit</button>
           </div>
           <div>${item.product_price}</div>

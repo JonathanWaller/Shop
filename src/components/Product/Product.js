@@ -40,7 +40,8 @@ class Product extends Component {
         img: this.props.productReducer.product[0].product_img,
         description: this.props.productReducer.product[0].product_description,
         size: this.props.productReducer.product[0].product_size,
-        category: this.props.productReducer.product[0].product_category
+        category: this.props.productReducer.product[0].product_category,
+        qty: this.props.productReducer.product[0].product_quantity
       });
     });
   }

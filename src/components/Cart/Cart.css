@@ -27,6 +27,10 @@
   justify-content: space-around;
 }
 
+.cart_sizeEditWrapper {
+  display: flex;
+}
+
 .cart_cartItems {
   border: 0.5px solid #ad8c4c;
   width: 35vw;
