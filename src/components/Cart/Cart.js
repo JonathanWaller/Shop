@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getCart, removeFromCart, emptyCart } from "../../ducks/cartReducer";
+import ReactModal from "react-modal";
+import EditCartModal from "./EditCartModal/EditCartModal";
 import "./Cart.css";
 import axios from "axios";
 
@@ -95,7 +97,15 @@ class Cart extends Component {
             {!this.state.toggleSelect ? (
               <div className="cart_sizeEditWrapper">
                 <div>Size: {item.product_size}</div>
-                <button onClick={() => this.handleToggle()}>Edit</button>
+                {/* <button onClick={() => this.handleToggle()}>Edit</button> */}
+                <div>
+                  {/* <ReactModal
+                    isOpen={this.state.showModal}
+                    shouldCloseOnEsc={true}
+                  >
+                    <p>Hello</p>
+                  </ReactModal> */}
+                </div>
               </div>
             ) : (
               <p>No thanks</p>
@@ -172,10 +182,21 @@ class Cart extends Component {
               </select>
             </div>
             {/* <div>Qty: {item.quantity}</div> */}
-            <button onClick={() => this.removeFromCart(item.cart_id)}>
-              Remove
-            </button>
-            <button>Edit</button>
+            <div className="quickWrapper">
+              <button onClick={() => this.removeFromCart(item.cart_id)}>
+                Remove
+              </button>
+              <EditCartModal
+                cartId={item.cart_id}
+                qty={item.product_quantity}
+                size={item.product_size}
+                category={item.product_category}
+                productId={item.product_id}
+                img={item.product_img}
+                name={item.product_name}
+                price={item.product_price}
+              />
+            </div>
           </div>
           <div>${item.product_price}</div>
         </div>
