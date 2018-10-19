@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
+import axios from "axios";
 
 class EditCartModal extends Component {
   constructor() {
     super();
     this.state = {
-      open: false
+      open: false,
+      size: 0,
+      qty: 0
     };
   }
 
@@ -18,8 +21,22 @@ class EditCartModal extends Component {
     this.setState({ open: false });
   };
 
+  inputHandler = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmit = id => {
+    axios.put(`/api/size/${id}`, {
+      product_size: this.state.size
+    });
+    axios.put(`/api/quantity/${id}`, {
+      product_quantity: this.state.qty
+    });
+  };
+
   render() {
     console.log(this.props);
+    console.log("STATE: ", this.state);
     return (
       <div>
         <button onClick={this.handleClickOpen}>Edit</button>
@@ -79,6 +96,23 @@ class EditCartModal extends Component {
                   </select>
                 ) : null}
               </div>
+              <div>
+                <div>Qty:</div>
+                <select
+                  name="qty"
+                  value={this.state.qty}
+                  onChange={e => this.inputHandler(e)}
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+              <button onClick={() => this.handleSubmit(this.props.cartId)}>
+                Confirm
+              </button>
             </div>
           </DialogContent>
         </Dialog>
