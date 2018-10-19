@@ -46,6 +46,10 @@
   padding-left: 1vw;
 }
 
+.quickWrapper {
+  display: flex;
+}
+
 .cart_rightPanel {
   /* border: 1px solid green; */
   width: 35vw;
