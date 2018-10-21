@@ -28,6 +28,7 @@ class Cart extends Component {
   }
 
   componentDidMount() {
+    console.log("HOWDY");
     // let {cart_id, product_id, product_img, product_name, product_price, quantity} = this.props.cartReducer.cart
     this.props.getCart().then(response => {
       // console.log(response);
@@ -98,14 +99,6 @@ class Cart extends Component {
               <div className="cart_sizeEditWrapper">
                 <div>Size: {item.product_size}</div>
                 {/* <button onClick={() => this.handleToggle()}>Edit</button> */}
-                <div>
-                  {/* <ReactModal
-                    isOpen={this.state.showModal}
-                    shouldCloseOnEsc={true}
-                  >
-                    <p>Hello</p>
-                  </ReactModal> */}
-                </div>
               </div>
             ) : (
               <p>No thanks</p>
@@ -167,7 +160,7 @@ class Cart extends Component {
 
             <div>Qty: {item.product_quantity}</div>
 
-            <div>
+            {/* <div>
               <div>Qty:</div>
               <select
                 name="qty"
@@ -180,8 +173,7 @@ class Cart extends Component {
                 <option value="4">4</option>
                 <option value="5">5</option>
               </select>
-            </div>
-            {/* <div>Qty: {item.quantity}</div> */}
+            </div> */}
             <div className="quickWrapper">
               <button onClick={() => this.removeFromCart(item.cart_id)}>
                 Remove

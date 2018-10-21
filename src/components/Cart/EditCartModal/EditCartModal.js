@@ -2,15 +2,22 @@ import React, { Component } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import axios from "axios";
+import { connect } from "react-redux";
+import { getCart } from "../../../ducks/cartReducer";
 
 class EditCartModal extends Component {
   constructor() {
     super();
     this.state = {
       open: false,
-      size: 0,
-      qty: 0
+      size: null,
+      qty: null
     };
+  }
+
+  componentDidMount() {
+    // console.log("HELLLOOOOOOO");
+    this.setState({ size: this.props.size, qty: this.props.qty });
   }
 
   handleClickOpen = () => {
@@ -26,12 +33,23 @@ class EditCartModal extends Component {
   };
 
   handleSubmit = id => {
+    // {
+    // this.state.size.length > 1
+    // ?
     axios.put(`/api/size/${id}`, {
       product_size: this.state.size
     });
+    // : null;
+    // }
+    // {
+    // this.state.qty > 0
+    // ?
     axios.put(`/api/quantity/${id}`, {
       product_quantity: this.state.qty
     });
+    // : null;
+    // }
+    this.props.getCart();
   };
 
   render() {
@@ -61,6 +79,7 @@ class EditCartModal extends Component {
                 {this.props.category === "pants" ? (
                   <select
                     name="size"
+                    // value={this.state.size}
                     value={this.state.size}
                     onChange={e => this.inputHandler(e)}
                   >
@@ -121,4 +140,11 @@ class EditCartModal extends Component {
   }
 }
 
-export default EditCartModal;
+const mapStateToProps = state => state;
+
+export default connect(
+  mapStateToProps,
+  { getCart }
+)(EditCartModal);
+
+// export default EditCartModal;
