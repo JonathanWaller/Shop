@@ -16,7 +16,10 @@ export default (
     <Route
       path="*"
       render={() => (
-        <img src="https://cdn.dribbble.com/users/26599/screenshots/2849884/404.gif" />
+        <img
+          src="https://cdn.dribbble.com/users/26599/screenshots/2849884/404.gif"
+          alt="404"
+        />
       )}
     />
   </Switch>

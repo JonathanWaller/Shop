@@ -33,28 +33,35 @@ class EditCartModal extends Component {
   };
 
   handleSubmit = id => {
-    // {
-    // this.state.size.length > 1
-    // ?
     axios.put(`/api/size/${id}`, {
       product_size: this.state.size
     });
-    // : null;
-    // }
-    // {
-    // this.state.qty > 0
-    // ?
-    axios.put(`/api/quantity/${id}`, {
-      product_quantity: this.state.qty
-    });
-    // : null;
-    // }
-    this.props.getCart();
+    axios
+      .put(`/api/quantity/${id}`, {
+        product_quantity: this.state.qty
+      })
+      .then(() => {
+        this.props.getMyCart();
+        this.handleClose();
+      });
+    // this.handleClose();
   };
 
+  // handleSubmit = async id => {
+  //   await Promise.all([
+  //     axios.put(`/api/size/${id}`, {
+  //       product_size: this.state.size
+  //     }),
+  //     axios.put(`/api/quantity/${id}`, {
+  //       product_quantity: this.state.qty
+  //     }),
+  //     this.props.getMyCart()
+  //   ]);
+  // };
+
   render() {
-    console.log(this.props);
-    console.log("STATE: ", this.state);
+    // console.log(this.props);
+    // console.log("STATE: ", this.state);
     return (
       <div>
         <button onClick={this.handleClickOpen}>Edit</button>
@@ -72,7 +79,7 @@ class EditCartModal extends Component {
         >
           <DialogContent>
             <div>
-              <img src={this.props.img} style={{ width: 20 }} />
+              <img src={this.props.img} style={{ width: 20 }} alt="img" />
               <div>
                 <div>Size:</div>
 
