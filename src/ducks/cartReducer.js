@@ -50,7 +50,7 @@ const initialState = {
 
 // reducer
 export default function cartReducer(state = initialState, action) {
-  // console.log(action);
+  console.log(action);
   switch (action.type) {
     case `${GET_CART}_PENDING`:
       return {

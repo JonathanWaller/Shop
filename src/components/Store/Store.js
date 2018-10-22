@@ -40,11 +40,9 @@ class Store extends Component {
   // };
 
   render() {
-    console.log(this.props);
-    console.log(this.props.storeReducer);
+    // console.log(this.props);
+    // console.log(this.props.storeReducer);
     let storeItems = this.props.storeReducer.items.map(item => {
-      console.log(item);
-      // console.log(item.product_size === null);
       return (
         <div className="store_productWrapper" key={item.product_id}>
           <Link to={`/product/${item.product_id}`}>
@@ -60,15 +58,6 @@ class Store extends Component {
           <div className="store_addButtonWrapper">
             <button
               className="store_addButton"
-              // onClick={() =>
-              //   this.addHandler({
-              //     id: item.product_id,
-              //     name: item.product_name,
-              //     price: item.product_price,
-              //     img: item.product_img,
-              //     qty: 1
-              //   })
-              // }
               onClick={e => {
                 this.props
                   .addToCart(
@@ -89,10 +78,7 @@ class Store extends Component {
             >
               Add To Cart
             </button>
-            {/* <ToastContainer /> */}
           </div>
-          {/* </div> */}
-          {/* </Link> */}
         </div>
       );
     });
