@@ -77,6 +77,7 @@ class Cart extends Component {
 
   render() {
     console.log("STATE: ", this.state);
+    console.log(this.props);
 
     let myCart = this.state.cart.map((item, i) => {
       // console.log(item);
@@ -116,6 +117,12 @@ class Cart extends Component {
       (total, elem) => (total += elem.product_price * elem.product_quantity),
       0
     );
+
+    let totalItems = this.props.cartReducer.cart.reduce(
+      (total, elem) => (total += elem.product_quantity),
+      0
+    );
+    console.log(totalItems);
     // console.log("MYTOTAL: ", total);
     return (
       <div>
@@ -132,9 +139,7 @@ class Cart extends Component {
             <div className="cart_wrapper">
               <div className="cart_leftPanel">
                 <div className="cart_cartItems">
-                  <h1 className="cart_title">
-                    Your Cart ({this.props.cartReducer.cart.length})
-                  </h1>
+                  <h1 className="cart_title">Your Cart ({totalItems})</h1>
                   {myCart}
                 </div>
               </div>
@@ -146,7 +151,7 @@ class Cart extends Component {
                       Summary
                     </h1>
                     <h3 id="cart_textColor" className="cart_totalItems">
-                      Total Items: {this.props.cartReducer.cart.length}
+                      Total Items: {totalItems}
                     </h3>
                     <div id="cart_textColor" className="cart_totalPrice">
                       Total: ${total}
