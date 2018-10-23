@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import NavBar from "./components/NavBar/NavBar";
 import routes from "./routes";
+import ScrollToTop from "react-router-scroll-top";
 
 import "./Reset.css";
 import "./App.css";
@@ -13,10 +14,12 @@ class App extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <div className="App">
-            <NavBar />
-            {routes}
-          </div>
+          <ScrollToTop>
+            <div className="App">
+              <NavBar />
+              {routes}
+            </div>
+          </ScrollToTop>
         </BrowserRouter>
       </Provider>
     );

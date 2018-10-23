@@ -29,7 +29,7 @@ class Home extends Component {
         <div className="home_textWrapper">
           <h3 id="home_whiteText">WELCOME TO</h3>
           <h3 id="home_goldText" className="home_laavish">
-            --- Laavish ---
+            Laavish
           </h3>
           <p id="home_whiteText">Men's Stop for Fashion & Technology</p>
           <div
