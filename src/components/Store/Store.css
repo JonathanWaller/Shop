@@ -1,6 +1,10 @@
 .store_wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  /* margin: 25px 0; */
+  /* padding: 0 15px; */
+  /* border: 1px solid red; */
 }
 
 .store_productWrapper {
@@ -38,5 +42,5 @@
 
 .store_productImg {
   height: 10vh;
-  width: 10vw;
+  /* width: 10vw; */
 }
