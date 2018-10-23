@@ -35,8 +35,18 @@
 }
 
 #home_goldText {
-  color: #ad8c4c;
+  color: white;
   font-size: 40px;
+}
+
+.home_laavish {
+  /* border: 1px solid red; */
+  width: 20vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ad8c4c;
+  /* border: 5px; */
 }
 
 /* .home_laavish{

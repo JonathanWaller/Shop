@@ -78,14 +78,9 @@ class Product extends Component {
         </div>
         <div className="product_rightPanel">
           <div className="product_name">{name}</div>
-          <div>{description}</div>
-          {/* <div>Size: {size}</div> */}
-          <div>
-            {/* {this.state.category === "pants" ||
-            this.state.category === "shoes" ||
-            this.state.category === "shirt" ? (
-              <div>Size:</div>
-            ) : null} */}
+          <div className="product__description">{description}</div>
+          <div className="product__price">${price}</div>
+          <div className="product__size">
             {needsSize.includes(this.state.category) ? <div>Size:</div> : null}
 
             {this.state.category === "pants" ? (
@@ -127,7 +122,7 @@ class Product extends Component {
             ) : null}
           </div>
 
-          <div>
+          <div className="product__qty">
             <div>Qty:</div>
             <select
               name="qty"
@@ -141,14 +136,14 @@ class Product extends Component {
               <option value="5">5</option>
             </select>
           </div>
-          <div>${price}</div>
-          <button
+          <div
+            className="product__addBtn"
             onClick={() =>
               this.props.addToCart(id, name, price, img, qty, size, category)
             }
           >
             Add to Cart
-          </button>
+          </div>
         </div>
         {/* </div> */}
       </div>
