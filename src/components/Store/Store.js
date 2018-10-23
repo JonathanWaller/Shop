@@ -5,6 +5,7 @@ import { getStore } from "../../ducks/storeReducer";
 import { addToCart } from "../../ducks/cartReducer";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import Splash from "../Splash/Splash";
 import "./Store.css";
 // import axios from "axios";
 
@@ -84,7 +85,8 @@ class Store extends Component {
     });
     return (
       <div>
-        <ToastContainer position="top-right" autoClose={5000} />
+        <Splash />
+        {/* <input /> */}
         <div className="store_wrapper">
           {this.props.storeReducer.isLoading ? (
             <img

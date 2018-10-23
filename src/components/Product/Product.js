@@ -55,7 +55,8 @@ class Product extends Component {
 
   render() {
     // console.log(this.props);
-    // console.log(this.state);
+    let needsSize = ["shoes", "shirt", "pants"];
+    console.log(this.state);
     let { id, name, price, img, qty, description, size, category } = this.state;
     return (
       <div className="product_wrapper">
@@ -71,7 +72,7 @@ class Product extends Component {
           <img
             className="product_image"
             src={img}
-            style={{ height: 450 }}
+            style={{ height: 400 }}
             alt="product"
           />
         </div>
@@ -80,7 +81,12 @@ class Product extends Component {
           <div>{description}</div>
           {/* <div>Size: {size}</div> */}
           <div>
-            <div>Size:</div>
+            {/* {this.state.category === "pants" ||
+            this.state.category === "shoes" ||
+            this.state.category === "shirt" ? (
+              <div>Size:</div>
+            ) : null} */}
+            {needsSize.includes(this.state.category) ? <div>Size:</div> : null}
 
             {this.state.category === "pants" ? (
               <select

@@ -76,6 +76,7 @@ class Cart extends Component {
   };
 
   render() {
+    let needsSize = ["shoes", "shirt", "pants"];
     console.log("STATE: ", this.state);
     console.log(this.props);
 
@@ -88,7 +89,9 @@ class Cart extends Component {
             <div>{item.product_name}</div>
 
             <div className="cart_sizeEditWrapper">
-              <div>Size: {item.product_size}</div>
+              {needsSize.includes(item.product_category) ? (
+                <div>Size: {item.product_size}</div>
+              ) : null}
             </div>
 
             <div>Qty: {item.product_quantity}</div>
