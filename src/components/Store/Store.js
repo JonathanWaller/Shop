@@ -78,6 +78,9 @@ class Store extends Component {
             <Link to={"/category/technology"}>
               <div>More</div>
             </Link>
+            <Link to="/sale">
+              <div>Sale</div>
+            </Link>
           </div>
         </div>
         <div className="store_wrapper">
