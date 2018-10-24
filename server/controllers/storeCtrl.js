@@ -13,7 +13,17 @@ const getProduct = (req, res) => {
   });
 };
 
+getCategory = (req, res) => {
+  console.log(req.params);
+  let { id } = req.params;
+  let db = req.app.get("db");
+  db.store.getCategory(id).then(response => {
+    res.status(200).json(response);
+  });
+};
+
 module.exports = {
   getStore,
-  getProduct
+  getProduct,
+  getCategory
 };

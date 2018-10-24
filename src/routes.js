@@ -5,6 +5,7 @@ import Store from "./components/Store/Store";
 import Cart from "./components/Cart/Cart";
 import Product from "./components/Product/Product";
 import Confirmation from "./components/Confirmation/Confirmation";
+import Category from "./components/Category/Category";
 
 export default (
   <Switch>
@@ -13,6 +14,7 @@ export default (
     <Route path="/cart" component={Cart} />
     <Route path="/product/:id" component={Product} />
     <Route path="/confirmation" component={Confirmation} />
+    <Route path="/category/:id" component={Category} />
     <Route
       path="*"
       render={() => (
