@@ -2,17 +2,17 @@ import React, { Component } from "react";
 import Splash from "../Splash/Splash";
 import axios from "axios";
 import { connect } from "react-redux";
-import { getCategory } from "../../ducks/storeReducer";
+import { getSale } from "../../ducks/storeReducer";
 import { Link } from "react-router-dom";
 
-class Category extends Component {
+class Sale extends Component {
   constructor() {
     super();
     this.state = {};
   }
 
   componentDidMount() {
-    this.props.getCategory(this.props.match.params.id).then(response => {
+    this.props.getSale().then(response => {
       console.log(response);
     });
   }
@@ -77,5 +77,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getCategory }
-)(Category);
+  { getSale }
+)(Sale);

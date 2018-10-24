@@ -22,8 +22,18 @@ getCategory = (req, res) => {
   });
 };
 
+getSaleItems = (req, res) => {
+  console.log(req.params);
+  let { id } = req.params;
+  let db = req.app.get("db");
+  db.store.getSale().then(response => {
+    res.status(200).json(response);
+  });
+};
+
 module.exports = {
   getStore,
   getProduct,
-  getCategory
+  getCategory,
+  getSaleItems
 };

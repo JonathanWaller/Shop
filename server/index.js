@@ -9,7 +9,8 @@ PORT = 3001;
 const {
   getStore,
   getProduct,
-  getCategory
+  getCategory,
+  getSaleItems
 } = require("./controllers/storeCtrl");
 const {
   getCart,
@@ -59,6 +60,7 @@ massive(process.env.CONNECTION_STRING).then(dbInstance => {
 app.get("/api/store", getStore);
 app.get("/api/product/:id", getProduct);
 app.get("/api/category/:id", getCategory);
+app.get("/api/sale", getSaleItems);
 
 // sessionCart
 // app.post(

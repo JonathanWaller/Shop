@@ -24,11 +24,6 @@ class Store extends Component {
   }
 
   render() {
-    let shirt = "shirt";
-    let pants = "pants";
-    // let myShirt = this.props
-    // console.log(this.props.storeReducer.items.product_category.includes("sh"));
-    // console.log(this.props.storeReducer);
     let storeItems = this.props.storeReducer.items.map(item => {
       return (
         <div className="store_productWrapper" key={item.product_id}>
@@ -71,12 +66,21 @@ class Store extends Component {
         <Splash />
         <div className="store__linksWrapper">
           <div className="store__links">
-            <Link to={`/category/${shirt}`}>
+            <Link to={"/category/shirt"}>
               <div>Shirts</div>
             </Link>
-            <div>Pants</div>
-            <div>Shoes</div>
-            <div>More</div>
+            <Link to={"/category/pants"}>
+              <div>Pants</div>
+            </Link>
+            <Link to={"/category/shoes"}>
+              <div>Shoes</div>
+            </Link>
+            <Link to={"/category/technology"}>
+              <div>More</div>
+            </Link>
+            <Link to="/sale">
+              <div>Sale</div>
+            </Link>
           </div>
         </div>
         <div className="store_wrapper">
