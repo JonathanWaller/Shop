@@ -6,6 +6,7 @@ import { addToCart } from "../../ducks/cartReducer";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Splash from "../Splash/Splash";
+import Links from "../Links/Links";
 import "./Store.css";
 // import axios from "axios";
 
@@ -64,10 +65,11 @@ class Store extends Component {
     return (
       <div>
         <Splash />
-        <div className="store__linksWrapper">
+        <Links />
+        {/* <div className="store__linksWrapper">
           <div className="store__links">
             <Link to={"/category/shirt"}>
-              <div>Shirts</div>
+              <div id="store__link">Shirts</div>
             </Link>
             <Link to={"/category/pants"}>
               <div>Pants</div>
@@ -82,7 +84,7 @@ class Store extends Component {
               <div>Sale</div>
             </Link>
           </div>
-        </div>
+        </div> */}
         <div className="store_wrapper">
           {this.props.storeReducer.isLoading ? (
             <img

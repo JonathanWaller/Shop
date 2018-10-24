@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Splash from "../Splash/Splash";
+import Links from "../Links/Links";
 import axios from "axios";
 import { connect } from "react-redux";
 import { getSale } from "../../ducks/storeReducer";
+import { addToCart } from "../../ducks/cartReducer";
 import { Link } from "react-router-dom";
 
 class Sale extends Component {
@@ -58,6 +60,7 @@ class Sale extends Component {
     return (
       <div>
         <Splash />
+        <Links />
         <div className="store_wrapper">
           {this.props.storeReducer.isLoading ? (
             <img
@@ -77,5 +80,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getSale }
+  { getSale, addToCart }
 )(Sale);
