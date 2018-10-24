@@ -6,7 +6,11 @@ const express = require("express"),
 PORT = 3001;
 
 //   controllers
-const { getStore, getProduct } = require("./controllers/storeCtrl");
+const {
+  getStore,
+  getProduct,
+  getCategory
+} = require("./controllers/storeCtrl");
 const {
   getCart,
   addToCart,
@@ -54,6 +58,7 @@ massive(process.env.CONNECTION_STRING).then(dbInstance => {
 // Store
 app.get("/api/store", getStore);
 app.get("/api/product/:id", getProduct);
+app.get("/api/category/:id", getCategory);
 
 // sessionCart
 // app.post(

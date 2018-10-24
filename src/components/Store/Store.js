@@ -23,25 +23,11 @@ class Store extends Component {
     });
   }
 
-  // addHandler = ({ id, name, price, img, qty }) => {
-  //   axios.post("/api/items", {
-  //     id,
-  //     name,
-  //     price,
-  //     img,
-  //     qty
-  //   });
-  // };
-
-  // goToProduct = () => {
-  //   this.props.history.push(
-  //     `/product/${this.props.storeReducer.items.product_id}`
-  //     // {`/product/${this.props.storeReducer.items.product_id}`}
-  //   );
-  // };
-
   render() {
-    // console.log(this.props);
+    let shirt = "shirt";
+    let pants = "pants";
+    // let myShirt = this.props
+    // console.log(this.props.storeReducer.items.product_category.includes("sh"));
     // console.log(this.props.storeReducer);
     let storeItems = this.props.storeReducer.items.map(item => {
       return (
@@ -50,9 +36,6 @@ class Store extends Component {
             <div className="store_productText">
               <h3>{item.product_name}</h3>
               <div>${item.product_price}</div>
-              {/* {item.product_size === null ? null : (
-                <div>Size: {item.product_size}</div>
-              )} */}
               <img src={item.product_img} className="store_productImg" alt="" />
             </div>
           </Link>
@@ -86,7 +69,16 @@ class Store extends Component {
     return (
       <div>
         <Splash />
-        {/* <input /> */}
+        <div className="store__linksWrapper">
+          <div className="store__links">
+            <Link to={`/category/${shirt}`}>
+              <div>Shirts</div>
+            </Link>
+            <div>Pants</div>
+            <div>Shoes</div>
+            <div>More</div>
+          </div>
+        </div>
         <div className="store_wrapper">
           {this.props.storeReducer.isLoading ? (
             <img
