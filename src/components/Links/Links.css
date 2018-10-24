@@ -1,0 +1,20 @@
+.store__linksWrapper {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+}
+
+.store__links {
+  /* border: 1px solid red; */
+  width: 30vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+#store__link {
+  color: black;
+}
+
+#store__link:active {
+  color: pink;
+}

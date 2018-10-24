@@ -1,24 +1,50 @@
 import React, { Component } from "react";
 import Splash from "../Splash/Splash";
+import Links from "../Links/Links";
 import axios from "axios";
 import { connect } from "react-redux";
 import { getCategory } from "../../ducks/storeReducer";
+import { addToCart } from "../../ducks/cartReducer";
 import { Link } from "react-router-dom";
 
 class Category extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      test: ""
+    };
   }
 
   componentDidMount() {
     this.props.getCategory(this.props.match.params.id).then(response => {
       console.log(response);
+      // this.setState({test: this.props.match.params.id})
     });
+  }
+
+  //   componentWillReceiveProps(nextProps) {
+  //     if (nextProps.match.params.id !== this.props.match.params.id) {
+  //       this.setState({ test: this.props.match.params.id });
+  //       this.props.getCategory(nextProps.match.params.id);
+  //     }
+  //   }
+
+  //   getDerivedStateFromProps(nextProps, prevState) {
+  //     if (nextProps.match.params.id !== this.props.match.params.id) {
+  //       return { test: this.props.match.params.id };
+  //     } else return null;
+  //   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      //   this.setState({ test: this.props.match.params.id });
+      this.props.getCategory(this.props.match.params.id);
+    }
   }
 
   render() {
     console.log(this.props);
+    console.log(this.state);
     let storeItems = this.props.storeReducer.items.map(item => {
       return (
         <div className="store_productWrapper" key={item.product_id}>
@@ -58,6 +84,26 @@ class Category extends Component {
     return (
       <div>
         <Splash />
+        <Links />
+        {/* <div className="store__linksWrapper">
+          <div className="store__links">
+            <Link to={"/category/shirt"}>
+              <div id="store__link">Shirts</div>
+            </Link>
+            <Link to={"/category/pants"}>
+              <div>Pants</div>
+            </Link>
+            <Link to={"/category/shoes"}>
+              <div>Shoes</div>
+            </Link>
+            <Link to={"/category/technology"}>
+              <div>More</div>
+            </Link>
+            <Link to="/sale">
+              <div>Sale</div>
+            </Link>
+          </div>
+        </div> */}
         <div className="store_wrapper">
           {this.props.storeReducer.isLoading ? (
             <img
@@ -77,5 +123,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getCategory }
+  { getCategory, addToCart }
 )(Category);
