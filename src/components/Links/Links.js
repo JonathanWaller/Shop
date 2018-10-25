@@ -10,16 +10,16 @@ const Links = () => {
           <div id="store__link">Shirts</div>
         </Link>
         <Link to={"/category/pants"}>
-          <div>Pants</div>
+          <div id="store__link">Pants</div>
         </Link>
         <Link to={"/category/shoes"}>
-          <div>Shoes</div>
+          <div id="store__link">Shoes</div>
         </Link>
         <Link to={"/category/technology"}>
-          <div>More</div>
+          <div id="store__link">More</div>
         </Link>
         <Link to="/sale">
-          <div>Sale</div>
+          <div id="links__sale">Sale</div>
         </Link>
       </div>
     </div>

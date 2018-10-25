@@ -2,7 +2,13 @@
   /* max-width: 1000px; */
   width: 100vw;
   height: 400px;
-  margin: 0px auto 25px auto;
+  /* margin: 0px auto 25px auto; */
   background-image: url("../../images/splash.jpg");
   background-size: cover;
+}
+
+@media (max-width: 375px) {
+  .splashPhoto {
+    display: none;
+  }
 }

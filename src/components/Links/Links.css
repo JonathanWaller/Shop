@@ -2,19 +2,37 @@
   /* border: 1px solid red; */
   display: flex;
   justify-content: center;
+  margin: 25px 0;
 }
 
 .store__links {
-  /* border: 1px solid red; */
-  width: 30vw;
+  /* border: 1px solid green; */
+  width: 40vw;
   display: flex;
   justify-content: space-between;
 }
 
+.store__links a {
+  text-decoration: none;
+}
+
 #store__link {
   color: black;
+  font-size: 18px;
 }
 
 #store__link:active {
   color: pink;
+}
+
+#links__sale {
+  /* color: #cf2946; */
+  text-decoration: none;
+  font-size: 18px;
+}
+
+@media (max-width: 375px) {
+  .store__links {
+    width: 70vw;
+  }
 }
