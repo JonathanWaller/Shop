@@ -9,12 +9,6 @@ class Home extends Component {
   }
 
   handleEnter = () => {
-    // axios.get("/api/store").then(response => {
-    //   console.log(response);
-    // });
-    // axios.post("/api/post").then(response => {
-    //   console.log(response);
-    // });
     this.props.history.push("/store");
   };
 
@@ -23,7 +17,6 @@ class Home extends Component {
   };
 
   render() {
-    // console.log(this.props);
     return (
       <div className="home_wrapper">
         <div className="home_textWrapper">
@@ -31,7 +24,9 @@ class Home extends Component {
           <h3 id="home_goldText" className="home_laavish">
             Laavish
           </h3>
-          <p id="home_whiteText">Men's Stop for Fashion & Technology</p>
+          <p id="home_whiteText" className="home_mainText">
+            Men's Stop for Fashion & Technology
+          </p>
           <div
             id="home_whiteText"
             className="home_enter"
@@ -39,7 +34,6 @@ class Home extends Component {
           >
             Enter
           </div>
-          {/* <button onClick={() => this.handleLogout()}>Logout</button> */}
         </div>
       </div>
     );

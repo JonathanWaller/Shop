@@ -73,7 +73,7 @@ class Product extends Component {
           <img
             className="product_image"
             src={img}
-            style={{ height: 400 }}
+            // style={{ height: 400 }}
             alt="product"
           />
         </div>
