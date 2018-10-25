@@ -1,3 +1,18 @@
+.loadingGif {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  margin-left: 45vw;
+  margin-top: 25vh;
+}
+
+.cart__noItems {
+  /* border: 1px solid red; */
+  margin-top: 10vh;
+  display: flex;
+  justify-content: center;
+}
+
 .cart_totalWrapper {
   display: flex;
   align-items: center;
@@ -82,12 +97,17 @@
 
 .cart_totalItems {
   display: flex;
+  /* flex-direction:  */
+  justify-content: space-between;
   align-items: center;
+  padding-right: 15px;
 }
 
 .cart_totalPrice {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding-right: 15px;
 }
 
 .cart_itemImg {
@@ -99,5 +119,7 @@
   background-color: red;
   color: white;
   border: 50px;
-  width: 10vw;
+  width: 13vw;
+  height: 3.5vh;
+  margin-top: 20px;
 }

@@ -133,10 +133,11 @@ class Cart extends Component {
           <img
             src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif"
             alt=""
+            className="loadingGif"
           />
         ) : null}
         {!this.props.cartReducer.cart.length ? (
-          "No Items in Cart"
+          <div className="cart__noItems">No Items in Cart</div>
         ) : (
           <div className="cart_totalWrapper">
             <div className="cart_wrapper">
@@ -154,10 +155,12 @@ class Cart extends Component {
                       Summary
                     </h1>
                     <h3 id="cart_textColor" className="cart_totalItems">
-                      Total Items: {totalItems}
+                      <div>Total Items:</div>
+                      <div>{totalItems}</div>
                     </h3>
                     <div id="cart_textColor" className="cart_totalPrice">
-                      Total: ${total}
+                      <div>Total:</div>
+                      <div>${total}</div>
                     </div>
                     <button
                       onClick={() =>

@@ -47,6 +47,7 @@
   align-items: center;
   background: #ad8c4c;
   /* border: 5px; */
+  border-radius: 5px;
 }
 
 /* .home_laavish{
@@ -55,4 +56,6 @@
 
 .home_enter {
   cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: #ad8c4c;
 }

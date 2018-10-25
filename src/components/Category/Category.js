@@ -109,6 +109,7 @@ class Category extends Component {
             <img
               src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif"
               alt=""
+              className="loadingGif"
             />
           ) : null}
 

@@ -64,6 +64,7 @@ class Product extends Component {
           <img
             src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif"
             alt="loading"
+            className="loadingGif"
           />
         ) : null}
         {/* {myProduct} */}
@@ -136,14 +137,17 @@ class Product extends Component {
               <option value="5">5</option>
             </select>
           </div>
-          <div
+          {/* <div */}
+          <button
             className="product__addBtn"
             onClick={() =>
               this.props.addToCart(id, name, price, img, qty, size, category)
             }
           >
+            {" "}
             Add to Cart
-          </div>
+          </button>
+          {/* </div> */}
         </div>
         {/* </div> */}
       </div>
