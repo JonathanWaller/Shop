@@ -72,7 +72,7 @@
 }
 
 .cart_rightInnerDiv {
-  border: 1px solid purple;
+  /* border: 1px solid purple; */
   background-color: black;
   height: 35vh;
   width: 15vw;
@@ -122,4 +122,25 @@
   width: 13vw;
   height: 3.5vh;
   margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .cart_leftPanel {
+    width: 50vw;
+  }
+  .cart_rightInnerDiv {
+    width: 25vw;
+  }
+}
+
+@media (max-width: 375px) {
+  .cart_leftPanel {
+    width: 60vw;
+  }
+  .cart_cartItems {
+    width: 55vw;
+  }
+  .cart_checkoutButton {
+    width: 20vw;
+  }
 }

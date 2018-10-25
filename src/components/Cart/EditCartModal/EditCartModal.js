@@ -4,6 +4,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import axios from "axios";
 import { connect } from "react-redux";
 import { getCart } from "../../../ducks/cartReducer";
+import "./EditCartModal.css";
 
 class EditCartModal extends Component {
   constructor() {
@@ -16,7 +17,6 @@ class EditCartModal extends Component {
   }
 
   componentDidMount() {
-    // console.log("HELLLOOOOOOO");
     this.setState({ size: this.props.size, qty: this.props.qty });
   }
 
@@ -47,21 +47,7 @@ class EditCartModal extends Component {
     // this.handleClose();
   };
 
-  // handleSubmit = async id => {
-  //   await Promise.all([
-  //     axios.put(`/api/size/${id}`, {
-  //       product_size: this.state.size
-  //     }),
-  //     axios.put(`/api/quantity/${id}`, {
-  //       product_quantity: this.state.qty
-  //     }),
-  //     this.props.getMyCart()
-  //   ]);
-  // };
-
   render() {
-    // console.log(this.props);
-    // console.log("STATE: ", this.state);
     return (
       <div>
         <button onClick={this.handleClickOpen}>Edit</button>
@@ -77,11 +63,16 @@ class EditCartModal extends Component {
             padding: "30px"
           }}
         >
-          <DialogContent>
-            <div>
-              <img src={this.props.img} style={{ width: 20 }} alt="img" />
+          <DialogContent className="editModal__mainWrapper">
+            <div className="editModal__wrapper">
+              <img
+                src={this.props.img}
+                // style={{ width: 20 }}
+                alt="img"
+                className="editModal__image"
+              />
               <div>
-                <div>Size:</div>
+                {this.state.size !== null ? <div>Size:</div> : null}
 
                 {this.props.category === "pants" ? (
                   <select
