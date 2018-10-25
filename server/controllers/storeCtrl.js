@@ -14,7 +14,6 @@ const getProduct = (req, res) => {
 };
 
 getCategory = (req, res) => {
-  console.log(req.params);
   let { id } = req.params;
   let db = req.app.get("db");
   db.store.getCategory(id).then(response => {
@@ -23,7 +22,6 @@ getCategory = (req, res) => {
 };
 
 getSaleItems = (req, res) => {
-  console.log(req.params);
   let { id } = req.params;
   let db = req.app.get("db");
   db.store.getSale().then(response => {

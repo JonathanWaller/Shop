@@ -1,11 +1,9 @@
 .editModal__mainWrapper {
-  /* border: 1px solid green; */
   width: 25vw;
   height: 30vh;
 }
 
 .editModal__wrapper {
-  /* border: 1px solid red; */
   height: 30vh;
   display: flex;
   flex-direction: column;

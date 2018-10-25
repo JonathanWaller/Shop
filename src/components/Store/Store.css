@@ -2,9 +2,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* margin: 25px 0; */
-  /* padding: 0 15px; */
-  /* border: 1px solid red; */
 }
 
 .store_productWrapper {
@@ -24,7 +21,6 @@
 
 .store_addButtonWrapper {
   display: flex;
-  /* border: 1px solid red; */
   height: 4h;
   margin-bottom: 5px;
 }
@@ -37,7 +33,6 @@
 }
 
 .store_productText {
-  /* border: 1px solid green; */
   height: 26vh;
   width: 20vw;
   display: flex;
@@ -49,13 +44,11 @@
 
 .store_productImg {
   height: 10vh;
-  /* width: 10vw; */
 }
 
 @media (max-width: 768px) {
   .store_productWrapper {
     width: 30vw;
-    /* height: 35 */
   }
 }
 

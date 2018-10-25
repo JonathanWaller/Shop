@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getCart, removeFromCart, emptyCart } from "../../ducks/cartReducer";
-// import ReactModal from "react-modal";
 import EditCartModal from "./EditCartModal/EditCartModal";
 import "./Cart.css";
 import axios from "axios";
@@ -30,32 +29,26 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    console.log("HOWDY");
     this.props.getCart().then(response => {
-      // console.log(response);
       this.setState({ cart: this.props.cartReducer.cart });
-      // console.log(response);
     });
   }
 
   getMyCart = () => {
-    console.log("YAHOOOOO");
     this.props.getCart().then(response => {
-      console.log(response);
       this.setState({ cart: this.props.cartReducer.cart });
     });
-    // this.forceUpdate();
   };
 
   pantSizeHandler = (cartId, e, i) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     axios.put(`/api/size/${cartId}`, {
       product_size: e.target.value
     });
   };
 
   quantityHandler = (cartId, e, i) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     axios.put(`/api/quantity/${cartId}`, {
       product_quantity: +e.target.value
     });
@@ -77,11 +70,8 @@ class Cart extends Component {
 
   render() {
     let needsSize = ["shoes", "shirt", "pants"];
-    console.log("STATE: ", this.state);
-    console.log(this.props);
 
     let myCart = this.state.cart.map((item, i) => {
-      // console.log(item);
       return (
         <div key={item.cart_id} className="cart_listItem">
           <img src={item.product_img} className="cart_itemImg" alt="" />
@@ -125,7 +115,7 @@ class Cart extends Component {
       (total, elem) => (total += elem.product_quantity),
       0
     );
-    console.log(totalItems);
+    // console.log(totalItems);
     // console.log("MYTOTAL: ", total);
     return (
       <div>
@@ -147,7 +137,7 @@ class Cart extends Component {
                   {myCart}
                 </div>
               </div>
-              {/* <button onClick={this.handleCheckout}>Checkout</button> */}
+
               <div className="cart_rightPanel">
                 <div className="cart_rightInnerDiv">
                   <div className="cart_rightBody">

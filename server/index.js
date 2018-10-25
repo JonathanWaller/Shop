@@ -22,16 +22,7 @@ const {
   updateQty
 } = require("./controllers/cartCtrl");
 
-// middlewares
-// const { checkForSession, logger } = require("./middlewares/checkForSession");
-
 const app = express();
-
-// const logger = (req, res, next) => {
-//   console.log("REQ.BODY: ", req.body);
-//   console.log("REQ.SESSION: ", req.session);
-//   next();
-// };
 
 app.use(json());
 app.use(
@@ -44,37 +35,12 @@ app.use(
     }
   })
 );
-// app.use(logger);
-// app.use(checkForSession);
 
 massive(process.env.CONNECTION_STRING).then(dbInstance => {
   app.set("db", dbInstance);
 });
 
-// test
-// app.get("/api/test", (req, res) => {
-//   res.status(200).json(`Let's get it.`);
-// });
-
-// Store
-app.get("/api/store", getStore);
-app.get("/api/product/:id", getProduct);
-app.get("/api/category/:id", getCategory);
-app.get("/api/sale", getSaleItems);
-
-// sessionCart
-// app.post(
-//   "/api/post",
-//   checkForSession,
-//   addSessionCart
-// , (req, res, next) => {
-//   res.send(200).json(req.session);
-// console.log("howdy");
-// }
-// );
-
-// app.post("/api/post", addSessionCart);
-
+// Session
 app.post("/api/logout", (req, res) => {
   req.session.destroy();
   // res.status(200).json(req.session.cart);
@@ -83,6 +49,12 @@ app.get("/api/session", (req, res, next) => {
   // console.log("TOTAL: ", req.session.cart.total);
   res.status(200).json(req.session.cart);
 });
+
+// Store
+app.get("/api/store", getStore);
+app.get("/api/product/:id", getProduct);
+app.get("/api/category/:id", getCategory);
+app.get("/api/sale", getSaleItems);
 
 // Cart
 app.get("/api/cart", getCart);

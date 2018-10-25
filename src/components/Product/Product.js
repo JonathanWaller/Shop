@@ -6,7 +6,6 @@ import { addToCart } from "../../ducks/cartReducer";
 import "./Product.css";
 
 import axios from "axios";
-//import './Product.css';
 
 class Product extends Component {
   constructor(props) {
@@ -25,7 +24,6 @@ class Product extends Component {
 
   componentDidMount() {
     this.props.getProduct(this.props.match.params.id).then(response => {
-      // console.log(response);
       this.setState({
         id: this.props.productReducer.product[0].product_id,
         name: this.props.productReducer.product[0].product_name,
@@ -54,7 +52,6 @@ class Product extends Component {
   };
 
   render() {
-    // console.log(this.props);
     let needsSize = ["shoes", "shirt", "pants"];
     console.log(this.state);
     let { id, name, price, img, qty, description, size, category } = this.state;
@@ -67,15 +64,8 @@ class Product extends Component {
             className="loadingGif"
           />
         ) : null}
-        {/* {myProduct} */}
-        {/* <div className="product_innerWrapper"> */}
         <div className="product_leftPanel">
-          <img
-            className="product_image"
-            src={img}
-            // style={{ height: 400 }}
-            alt="product"
-          />
+          <img className="product_image" src={img} alt="product" />
         </div>
         <div className="product_rightPanel">
           <div className="product_name">{name}</div>
@@ -137,7 +127,6 @@ class Product extends Component {
               <option value="5">5</option>
             </select>
           </div>
-          {/* <div */}
           <button
             className="product__addBtn"
             onClick={() =>
@@ -147,9 +136,7 @@ class Product extends Component {
             {" "}
             Add to Cart
           </button>
-          {/* </div> */}
         </div>
-        {/* </div> */}
       </div>
     );
   }

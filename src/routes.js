@@ -15,7 +15,6 @@ export default (
     <Route path="/cart" component={Cart} />
     <Route path="/product/:id" component={Product} />
     <Route path="/confirmation" component={Confirmation} />
-    {/* <Route path="/category/:id" component={Category} /> */}
     <Route path="/category/:id" component={Category} />
     <Route path="/sale" component={Sale} />
     <Route

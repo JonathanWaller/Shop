@@ -1,12 +1,10 @@
 .product_wrapper {
-  /* border: 1px solid red; */
   height: 100vh;
   display: flex;
   padding-top: 7vh;
 }
 
 .product_leftPanel {
-  /* border: 1px solid green; */
   height: 100vh;
   width: 70vw;
   display: flex;
@@ -16,10 +14,6 @@
 
 .product_image {
   height: 400px;
-}
-
-.product_rightPanel {
-  /* border: 1px solid orange; */
 }
 
 .product_name {
@@ -36,17 +30,14 @@
 }
 
 .product__size {
-  /* border: 1px solid red; */
   margin-bottom: 20px;
 }
 
 .product__qty {
-  /* border: 1px solid red; */
   margin-bottom: 20px;
 }
 
 .product__addBtn {
-  /* border: 1px solid red; */
   padding: 3px;
   width: 90px;
   background: black;

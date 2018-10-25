@@ -1,12 +1,10 @@
 .store__linksWrapper {
-  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   margin: 25px 0;
 }
 
 .store__links {
-  /* border: 1px solid green; */
   width: 40vw;
   display: flex;
   justify-content: space-between;

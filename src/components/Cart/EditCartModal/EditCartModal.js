@@ -44,7 +44,6 @@ class EditCartModal extends Component {
         this.props.getMyCart();
         this.handleClose();
       });
-    // this.handleClose();
   };
 
   render() {
@@ -67,7 +66,6 @@ class EditCartModal extends Component {
             <div className="editModal__wrapper">
               <img
                 src={this.props.img}
-                // style={{ width: 20 }}
                 alt="img"
                 className="editModal__image"
               />
@@ -77,7 +75,6 @@ class EditCartModal extends Component {
                 {this.props.category === "pants" ? (
                   <select
                     name="size"
-                    // value={this.state.size}
                     value={this.state.size}
                     onChange={e => this.inputHandler(e)}
                   >
@@ -144,5 +141,3 @@ export default connect(
   mapStateToProps,
   { getCart }
 )(EditCartModal);
-
-// export default EditCartModal;

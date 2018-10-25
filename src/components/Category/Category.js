@@ -16,35 +16,16 @@ class Category extends Component {
   }
 
   componentDidMount() {
-    this.props.getCategory(this.props.match.params.id).then(response => {
-      console.log(response);
-      // this.setState({test: this.props.match.params.id})
-    });
+    this.props.getCategory(this.props.match.params.id);
   }
-
-  //   componentWillReceiveProps(nextProps) {
-  //     if (nextProps.match.params.id !== this.props.match.params.id) {
-  //       this.setState({ test: this.props.match.params.id });
-  //       this.props.getCategory(nextProps.match.params.id);
-  //     }
-  //   }
-
-  //   getDerivedStateFromProps(nextProps, prevState) {
-  //     if (nextProps.match.params.id !== this.props.match.params.id) {
-  //       return { test: this.props.match.params.id };
-  //     } else return null;
-  //   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params.id !== this.props.match.params.id) {
-      //   this.setState({ test: this.props.match.params.id });
       this.props.getCategory(this.props.match.params.id);
     }
   }
 
   render() {
-    console.log(this.props);
-    console.log(this.state);
     let storeItems = this.props.storeReducer.items.map(item => {
       return (
         <div className="store_productWrapper" key={item.product_id}>
@@ -68,11 +49,6 @@ class Category extends Component {
                   item.product_size,
                   item.product_category
                 );
-                //   .then(() =>
-                //     toast.success("Added to cart", {
-                //       position: toast.POSITION.TOP_RIGHT
-                //     })
-                //   );
               }}
             >
               Add To Cart
@@ -85,25 +61,6 @@ class Category extends Component {
       <div>
         <Splash />
         <Links />
-        {/* <div className="store__linksWrapper">
-          <div className="store__links">
-            <Link to={"/category/shirt"}>
-              <div id="store__link">Shirts</div>
-            </Link>
-            <Link to={"/category/pants"}>
-              <div>Pants</div>
-            </Link>
-            <Link to={"/category/shoes"}>
-              <div>Shoes</div>
-            </Link>
-            <Link to={"/category/technology"}>
-              <div>More</div>
-            </Link>
-            <Link to="/sale">
-              <div>Sale</div>
-            </Link>
-          </div>
-        </div> */}
         <div className="store_wrapper">
           {this.props.storeReducer.isLoading ? (
             <img

@@ -1,9 +1,8 @@
 .nav_wrapper {
-  /* border: 1px solid red; */
   background: #141414;
   height: 5vh;
   display: flex;
-  /* justify-content: center; */
+
   justify-content: flex-end;
   align-items: center;
 }
@@ -11,8 +10,6 @@
 .nav_linksWrapper {
   display: flex;
   margin-right: 20px;
-  /* justify-content: center;
-  align-items: center; */
 }
 
 .nav_linksWrapper a {
@@ -22,5 +19,4 @@
 #nav_link {
   margin: 0 10px;
   color: white;
-  /* text-decoration: hotpink;/ */
 }
