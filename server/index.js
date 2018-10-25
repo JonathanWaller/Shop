@@ -4,6 +4,7 @@ const express = require("express"),
   massive = require("massive"),
   session = require("express-session");
 PORT = 3001;
+const path = require("path");
 
 //   controllers
 const {
@@ -63,5 +64,10 @@ app.delete("/api/item/:id", removeFromCart);
 app.delete("/api/emptyCart/:id", emptyCart);
 app.put(`/api/quantity/:id`, updateQty);
 app.put("/api/size/:id", updateSize);
+
+// for build
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
 
 app.listen(PORT, () => console.log(`Time to shop from ${PORT}`));
