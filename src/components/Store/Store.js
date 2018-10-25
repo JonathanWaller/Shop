@@ -4,13 +4,11 @@ import { connect } from "react-redux";
 import { getStore } from "../../ducks/storeReducer";
 import { addToCart } from "../../ducks/cartReducer";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import Splash from "../Splash/Splash";
 import Links from "../Links/Links";
 import "./Store.css";
 
 class Store extends Component {
-  notify = () => toast("Item added to cart");
   constructor() {
     super();
     this.state = {};

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Splash from "../Splash/Splash";
 import Links from "../Links/Links";
-import axios from "axios";
 import { connect } from "react-redux";
 import { getSale } from "../../ducks/storeReducer";
 import { addToCart } from "../../ducks/cartReducer";
@@ -20,7 +19,6 @@ class Sale extends Component {
   }
 
   render() {
-    console.log(this.props);
     let storeItems = this.props.storeReducer.items.map(item => {
       return (
         <div className="store_productWrapper" key={item.product_id}>
