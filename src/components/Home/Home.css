@@ -50,12 +50,17 @@
   border-radius: 5px;
 }
 
-/* .home_laavish{
-  font-size
-} */
-
 .home_enter {
   cursor: pointer;
   text-decoration: underline;
   text-decoration-color: #ad8c4c;
+}
+
+@media (max-width: 375px) {
+  .home_laavish {
+    width: 50vw;
+  }
+  .home_mainText {
+    margin-left: 25px;
+  }
 }
