@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Splash from "../Splash/Splash";
 import Links from "../Links/Links";
-import axios from "axios";
 import { connect } from "react-redux";
 import { getCategory } from "../../ducks/storeReducer";
 import { addToCart } from "../../ducks/cartReducer";

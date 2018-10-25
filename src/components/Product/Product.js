@@ -53,7 +53,6 @@ class Product extends Component {
 
   render() {
     let needsSize = ["shoes", "shirt", "pants"];
-    console.log(this.state);
     let { id, name, price, img, qty, description, size, category } = this.state;
     return (
       <div className="product_wrapper">
