@@ -44,11 +44,6 @@ class Sale extends Component {
                   item.product_size,
                   item.product_category
                 );
-                //   .then(() =>
-                //     toast.success("Added to cart", {
-                //       position: toast.POSITION.TOP_RIGHT
-                //     })
-                //   );
               }}
             >
               Add To Cart

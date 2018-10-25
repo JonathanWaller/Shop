@@ -8,7 +8,6 @@ import { ToastContainer, toast } from "react-toastify";
 import Splash from "../Splash/Splash";
 import Links from "../Links/Links";
 import "./Store.css";
-// import axios from "axios";
 
 class Store extends Component {
   notify = () => toast("Item added to cart");
@@ -19,9 +18,7 @@ class Store extends Component {
 
   componentDidMount() {
     this.props.getStore();
-    axios.get("/api/session").then(response => {
-      // console.log(response);
-    });
+    axios.get("/api/session");
   }
 
   render() {

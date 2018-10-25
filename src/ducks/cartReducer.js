@@ -45,7 +45,6 @@ export function emptyCart(id) {
 const initialState = {
   cart: [],
   total: 0
-  //   quantity: 1
 };
 
 // reducer
