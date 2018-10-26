@@ -3,7 +3,7 @@ const express = require("express"),
   { json } = require("body-parser"),
   massive = require("massive"),
   session = require("express-session");
-PORT = 3001;
+PORT = 3002;
 const path = require("path");
 
 //   controllers
