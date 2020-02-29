@@ -3,30 +3,30 @@ const express = require("express"),
   { json } = require("body-parser"),
   massive = require("massive"),
   session = require("express-session");
-PORT = 3001;
+PORT = 3005;
+const path = require("path");
 
 //   controllers
-const { getStore, getProduct } = require("./controllers/storeCtrl");
+const {
+  getStore,
+  getProduct,
+  getCategory,
+  getSaleItems
+} = require("./controllers/storeCtrl");
 const {
   getCart,
   addToCart,
   removeFromCart,
   addSessionCart,
-  emptyCart
+  emptyCart,
+  updateSize,
+  updateQty
 } = require("./controllers/cartCtrl");
-
-// middlewares
-// const { checkForSession, logger } = require("./middlewares/checkForSession");
 
 const app = express();
 
-// const logger = (req, res, next) => {
-//   console.log("REQ.BODY: ", req.body);
-//   console.log("REQ.SESSION: ", req.session);
-//   next();
-// };
-
 app.use(json());
+app.use(express.static(`${__dirname}/../build`));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -37,35 +37,12 @@ app.use(
     }
   })
 );
-// app.use(logger);
-// app.use(checkForSession);
 
 massive(process.env.CONNECTION_STRING).then(dbInstance => {
   app.set("db", dbInstance);
 });
 
-// test
-// app.get("/api/test", (req, res) => {
-//   res.status(200).json(`Let's get it.`);
-// });
-
-// Store
-app.get("/api/store", getStore);
-app.get("/api/product/:id", getProduct);
-
-// sessionCart
-// app.post(
-//   "/api/post",
-//   checkForSession,
-//   addSessionCart
-// , (req, res, next) => {
-//   res.send(200).json(req.session);
-// console.log("howdy");
-// }
-// );
-
-// app.post("/api/post", addSessionCart);
-
+// Session
 app.post("/api/logout", (req, res) => {
   req.session.destroy();
   // res.status(200).json(req.session.cart);
@@ -75,10 +52,23 @@ app.get("/api/session", (req, res, next) => {
   res.status(200).json(req.session.cart);
 });
 
+// Store
+app.get("/api/store", getStore);
+app.get("/api/product/:id", getProduct);
+app.get("/api/category/:id", getCategory);
+app.get("/api/sale", getSaleItems);
+
 // Cart
 app.get("/api/cart", getCart);
 app.post("/api/items", addToCart);
 app.delete("/api/item/:id", removeFromCart);
 app.delete("/api/emptyCart/:id", emptyCart);
+app.put(`/api/quantity/:id`, updateQty);
+app.put("/api/size/:id", updateSize);
+
+// for build
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
 
 app.listen(PORT, () => console.log(`Time to shop from ${PORT}`));

@@ -1,0 +1,12 @@
+.splashPhoto {
+  width: 100vw;
+  height: 400px;
+  background-image: url("../../images/splash.jpg");
+  background-size: cover;
+}
+
+@media (max-width: 375px) {
+  .splashPhoto {
+    display: none;
+  }
+}

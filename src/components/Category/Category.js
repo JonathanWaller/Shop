@@ -1,22 +1,27 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { connect } from "react-redux";
-import { getStore } from "../../ducks/storeReducer";
-import { addToCart } from "../../ducks/cartReducer";
-import { Link } from "react-router-dom";
 import Splash from "../Splash/Splash";
 import Links from "../Links/Links";
-import "./Store.css";
+import { connect } from "react-redux";
+import { getCategory } from "../../ducks/storeReducer";
+import { addToCart } from "../../ducks/cartReducer";
+import { Link } from "react-router-dom";
 
-class Store extends Component {
+class Category extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      test: ""
+    };
   }
 
   componentDidMount() {
-    this.props.getStore();
-    axios.get("/api/session");
+    this.props.getCategory(this.props.match.params.id);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      this.props.getCategory(this.props.match.params.id);
+    }
   }
 
   render() {
@@ -25,9 +30,9 @@ class Store extends Component {
         <div className="store_productWrapper" key={item.product_id}>
           <Link to={`/product/${item.product_id}`}>
             <div className="store_productText">
-              <img src={item.product_img} className="store_productImg" alt="" />
               <h3>{item.product_name}</h3>
               <div>${item.product_price}</div>
+              <img src={item.product_img} className="store_productImg" alt="" />
             </div>
           </Link>
           <div className="store_addButtonWrapper">
@@ -75,5 +80,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getStore, addToCart }
-)(Store);
+  { getCategory, addToCart }
+)(Category);

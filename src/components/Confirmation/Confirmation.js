@@ -1,12 +1,12 @@
 import React from "react";
+import "./Confirmation.css";
 
 function Confirmation() {
   return (
-    <div>
-      <h1>Confirmation</h1>
+    <div className="confirmation__wrapper">
+      <h1 className="confirmation__confirmation">Confirmation</h1>
       <div>
-        Thanks for shopping with NAME. Your order has been confirmed. Will add
-        more to this...
+        Thanks for shopping with Laavish! Your order has been confirmed.
       </div>
     </div>
   );

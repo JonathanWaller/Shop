@@ -13,7 +13,7 @@ export function getCart() {
   };
 }
 
-export function addToCart(id, name, price, img, qty) {
+export function addToCart(id, name, price, img, qty, size, category) {
   return {
     type: ADD_TO_CART,
     payload: axios.post("/api/items", {
@@ -21,7 +21,9 @@ export function addToCart(id, name, price, img, qty) {
       name,
       price,
       img,
-      qty
+      qty,
+      size,
+      category
     })
   };
 }
@@ -43,12 +45,11 @@ export function emptyCart(id) {
 const initialState = {
   cart: [],
   total: 0
-  //   quantity: 1
 };
 
 // reducer
 export default function cartReducer(state = initialState, action) {
-  console.log(action);
+  // console.log(action);
   switch (action.type) {
     case `${GET_CART}_PENDING`:
       return {

@@ -1,22 +1,21 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { connect } from "react-redux";
-import { getStore } from "../../ducks/storeReducer";
-import { addToCart } from "../../ducks/cartReducer";
-import { Link } from "react-router-dom";
 import Splash from "../Splash/Splash";
 import Links from "../Links/Links";
-import "./Store.css";
+import { connect } from "react-redux";
+import { getSale } from "../../ducks/storeReducer";
+import { addToCart } from "../../ducks/cartReducer";
+import { Link } from "react-router-dom";
 
-class Store extends Component {
+class Sale extends Component {
   constructor() {
     super();
     this.state = {};
   }
 
   componentDidMount() {
-    this.props.getStore();
-    axios.get("/api/session");
+    this.props.getSale().then(response => {
+      console.log(response);
+    });
   }
 
   render() {
@@ -25,9 +24,9 @@ class Store extends Component {
         <div className="store_productWrapper" key={item.product_id}>
           <Link to={`/product/${item.product_id}`}>
             <div className="store_productText">
-              <img src={item.product_img} className="store_productImg" alt="" />
               <h3>{item.product_name}</h3>
               <div>${item.product_price}</div>
+              <img src={item.product_img} className="store_productImg" alt="" />
             </div>
           </Link>
           <div className="store_addButtonWrapper">
@@ -60,7 +59,6 @@ class Store extends Component {
             <img
               src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif"
               alt=""
-              className="loadingGif"
             />
           ) : null}
 
@@ -75,5 +73,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getStore, addToCart }
-)(Store);
+  { getSale, addToCart }
+)(Sale);

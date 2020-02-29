@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getCart, removeFromCart, emptyCart } from "../../ducks/cartReducer";
+import EditCartModal from "./EditCartModal/EditCartModal";
 import "./Cart.css";
 import axios from "axios";
 
@@ -14,38 +15,52 @@ class Cart extends Component {
       img: "",
       name: "",
       qty: null,
-      price: null
+      price: null,
+      size: null,
+      category: "",
+      defaultQty: 1,
+      shirtSize: "M",
+      pantSize: "30",
+      shoeSize: 10,
+      modalOpen: false,
+      modalSize: null,
+      modalQty: null
     };
   }
 
   componentDidMount() {
-    // console.log("eagle has landed");
-    // let {cart_id, product_id, product_img, product_name, product_price, quantity} = this.props.cartReducer.cart
-    this.props.getCart().then(() => {
+    this.props.getCart().then(response => {
       this.setState({ cart: this.props.cartReducer.cart });
-      // console.log(response);
     });
-
-    // this.props.cartReducer.total +=
-    // axios.get("/api/session").then(response => {
-    //   console.log(response);
-    //   this.setState({ cart: response.data.cart, total: response.data.total });
-    // });
   }
 
-  // handleCheckout = () => {
-  //   axios.delete("/api/cart").then(() => {
-  //     this.props.getCart();
-  //   });
-  //   this.props.history.push("/confirmation");
-  // };
+  getMyCart = () => {
+    this.props.getCart().then(response => {
+      this.setState({ cart: this.props.cartReducer.cart });
+    });
+  };
 
-  removeFromCart = id => {
-    this.props.removeFromCart(id).then(response => {
+  pantSizeHandler = (cartId, e, i) => {
+    // console.log(e.target.value);
+    axios.put(`/api/size/${cartId}`, {
+      product_size: e.target.value
+    });
+  };
+
+  quantityHandler = (cartId, e, i) => {
+    // console.log(e.target.value);
+    axios.put(`/api/quantity/${cartId}`, {
+      product_quantity: +e.target.value
+    });
+  };
+
+  removeFromCart = async id => {
+    await Promise.all([
+      this.props.removeFromCart(id),
       this.props.getCart().then(() => {
         this.setState({ cart: this.props.cartReducer.cart });
-      });
-    });
+      })
+    ]);
   };
 
   handleCheckout = id => {
@@ -53,53 +68,54 @@ class Cart extends Component {
     this.props.history.push("/confirmation");
   };
 
-  // handleCheckout = () => {
-  //   axios.post("/api/logout");
-  //   axios.get("/api/session").then(response => {
-  //     this.setState({ cart: response.data });
-  //   });
-  // };
-
   render() {
-    console.log("STATE: ", this.state);
-    console.log(this.props);
+    let needsSize = ["shoes", "shirt", "pants"];
 
-    // let myCart =
-    //   this.state.cart.length &&
-    //   this.state.cart.map(elem => {
-    //     return (
-    //       <div key={elem.id}>
-    //         <div>{elem.name}</div>
-    //         <div>${elem.price}</div>
-    //         <img src={elem.img} style={{ height: 45, width: 45 }} />
-    //       </div>
-    //     );
-    //   });
-
-    let myCart = this.state.cart.map(item => {
-      // let myCart = this.props.cartReducer.cart.map(item => {
+    let myCart = this.state.cart.map((item, i) => {
       return (
         <div key={item.cart_id} className="cart_listItem">
           <img src={item.product_img} className="cart_itemImg" alt="" />
           <div>
             <div>{item.product_name}</div>
-            <div>Qty: {item.quantity}</div>
-            <button onClick={() => this.removeFromCart(item.cart_id)}>
-              Remove
-            </button>
-            {/* <button onClick={() => this.props.removeFromCart(item.cart_id)}>
-              Remove
-            </button> */}
-            <button>Update Qty</button>
+
+            <div className="cart_sizeEditWrapper">
+              {needsSize.includes(item.product_category) ? (
+                <div>Size: {item.product_size}</div>
+              ) : null}
+            </div>
+
+            <div>Qty: {item.product_quantity}</div>
+            <div className="quickWrapper">
+              <button onClick={() => this.removeFromCart(item.cart_id)}>
+                Remove
+              </button>
+              <EditCartModal
+                cartId={item.cart_id}
+                qty={item.product_quantity}
+                size={item.product_size}
+                category={item.product_category}
+                productId={item.product_id}
+                img={item.product_img}
+                name={item.product_name}
+                price={item.product_price}
+                getMyCart={this.getMyCart}
+              />
+            </div>
           </div>
           <div>${item.product_price}</div>
         </div>
       );
     });
     let total = this.props.cartReducer.cart.reduce(
-      (total, elem) => (total += elem.product_price * elem.quantity),
+      (total, elem) => (total += elem.product_price * elem.product_quantity),
       0
     );
+
+    let totalItems = this.props.cartReducer.cart.reduce(
+      (total, elem) => (total += elem.product_quantity),
+      0
+    );
+    // console.log(totalItems);
     // console.log("MYTOTAL: ", total);
     return (
       <div>
@@ -107,22 +123,21 @@ class Cart extends Component {
           <img
             src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif"
             alt=""
+            className="loadingGif"
           />
         ) : null}
         {!this.props.cartReducer.cart.length ? (
-          "No Items in Cart"
+          <div className="cart__noItems">No Items in Cart</div>
         ) : (
           <div className="cart_totalWrapper">
             <div className="cart_wrapper">
               <div className="cart_leftPanel">
                 <div className="cart_cartItems">
-                  <h1 className="cart_title">
-                    Your Cart ({this.props.cartReducer.cart.length})
-                  </h1>
+                  <h1 className="cart_title">Your Cart ({totalItems})</h1>
                   {myCart}
                 </div>
               </div>
-              {/* <button onClick={this.handleCheckout}>Checkout</button> */}
+
               <div className="cart_rightPanel">
                 <div className="cart_rightInnerDiv">
                   <div className="cart_rightBody">
@@ -130,11 +145,12 @@ class Cart extends Component {
                       Summary
                     </h1>
                     <h3 id="cart_textColor" className="cart_totalItems">
-                      Total Items: {this.props.cartReducer.cart.length}
+                      <div>Total Items:</div>
+                      <div>{totalItems}</div>
                     </h3>
                     <div id="cart_textColor" className="cart_totalPrice">
-                      Total:$
-                      {total}
+                      <div>Total:</div>
+                      <div>${total}</div>
                     </div>
                     <button
                       onClick={() =>
