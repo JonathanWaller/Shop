@@ -7,10 +7,11 @@ import './StoreSkeleton.css';
 const StoreSkeleton = () => {
     
     let storeLength=[1,2,3,4];
-    let storeItems = storeLength.map( item => {
+    let storeItems = storeLength.map( (item, index) => {
         return (
             <div
                 className='store_productWrapper'
+                key={index}
             >
                 <Skeleton width={200} height={200} />
             </div>
