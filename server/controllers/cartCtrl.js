@@ -6,12 +6,8 @@ const getCart = (req, res) => {
 };
 
 const addToCart = (req, res) => {
-  // console.log(req.body);
-  // console.log(req.sessionID);
   const { id, name, price, img, qty, size, category } = req.body;
   const { sessionID } = req;
-  // console.log("SESSIONID: ", sessionID);
-
   let db = req.app.get("db");
   db.cart
     .addToCart([id, sessionID, name, price, img, qty, size, category])
@@ -53,9 +49,7 @@ const emptyCart = (req, res) => {
 };
 
 const addSessionCart = (req, res) => {
-  // console.log("TERM REQ.SESSION.CART: ", req.session.cart);
   res.status(200).json(req.session.cart);
-  // console.log(req.session.cart);
 };
 
 module.exports = {

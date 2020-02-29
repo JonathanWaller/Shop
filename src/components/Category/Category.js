@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Splash from "../Splash/Splash";
+import StoreSkeleton from '../StoreSkeleton/StoreSkeleton';
 import Links from "../Links/Links";
 import { connect } from "react-redux";
 import { getCategory } from "../../ducks/storeReducer";
@@ -62,11 +63,7 @@ class Category extends Component {
         <Links />
         <div className="store_wrapper">
           {this.props.storeReducer.isLoading ? (
-            <img
-              src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif"
-              alt=""
-              className="loadingGif"
-            />
+            <StoreSkeleton />
           ) : null}
 
           {storeItems}

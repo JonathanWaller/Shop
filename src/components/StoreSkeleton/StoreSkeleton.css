@@ -1,0 +1,15 @@
+.store_productWrapper {
+  height: 30vh;
+  width: 20vw;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.store_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

@@ -5,6 +5,7 @@ import { getStore } from "../../ducks/storeReducer";
 import { addToCart } from "../../ducks/cartReducer";
 import { Link } from "react-router-dom";
 import Splash from "../Splash/Splash";
+import StoreSkeleton from '../StoreSkeleton/StoreSkeleton';
 import Links from "../Links/Links";
 import "./Store.css";
 
@@ -57,11 +58,7 @@ class Store extends Component {
         <Links />
         <div className="store_wrapper">
           {this.props.storeReducer.isLoading ? (
-            <img
-              src="https://payload345.cargocollective.com/1/18/582678/9219397/loading-ttcredesign.gif"
-              alt=""
-              className="loadingGif"
-            />
+            <StoreSkeleton />
           ) : null}
 
           {storeItems}

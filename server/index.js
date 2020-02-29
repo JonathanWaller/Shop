@@ -48,7 +48,6 @@ app.post("/api/logout", (req, res) => {
   // res.status(200).json(req.session.cart);
 });
 app.get("/api/session", (req, res, next) => {
-  // console.log("TOTAL: ", req.session.cart.total);
   res.status(200).json(req.session.cart);
 });
 
